@@ -20,6 +20,97 @@ extern CarState carState;
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
+void motorControl(uint8_t rpm){
+    static uint8_t lastRpm=0; 
+    CAN_TX_MSGOBJ txMsg={0};
+    uint8_t txdata[8];
+        if(lastRpm!= rpm) { 
+            lastRpm = rpm;
+
+            txMsg.bF.id.ID = ID_PWR_MOTOR;
+            txMsg.bF.ctrl.DLC = CAN_DLC_1;
+            txdata[0] = rpm;
+        CanSend(&txMsg,txdata); 
+    } 
+}
+
+bool motorControl_Process(Event* ev){
+    
+    typedef enum
+    {
+        INIT,
+        OFF,
+        CRUISE,
+        BRAKE,
+        STANDBY
+    }MotorState;
+    static MotorState state = INIT;
+    static MotorState oldState = INIT;
+    
+    
+    switch(state)   // transition state machine
+    {
+        case INIT:
+            if(ev->id == E_INIT){
+                state = OFF;
+            }
+            break;
+        case OFF:
+            if(ev->id == E_CONTACT_ON)
+            {
+                state = STANDBY;
+
+            }
+            break;
+        case CRUISE:
+            if(ev->id == E_CONTACT_OFF)
+            {
+                state = OFF;
+            }else if(ev->id == E_ACCELERATION_OFF)
+            {
+                state = STANDBY;
+            }
+        case STANDBY:
+            if(ev->id == E_CONTACT_OFF)
+            {
+                state = OFF;
+            }else if(ev->id == E_ACCELERATION_ON)
+            {
+                state = CRUISE;
+            }
+        default :
+            break;
+    }
+    
+    if(oldState == state)    // check state change
+   {
+       return 0;            // no change, no entry action
+   }
+   oldState = state; 
+   switch(state)            // on entry execution state machine
+    {
+        case INIT:
+        break;
+        case OFF:
+            motorControl(0);
+            break;
+        case CRUISE:
+            lightContol_FrontLight(50);
+            lightContol_BackLight(50);
+            break;    
+       case STANDBY:
+           motorControl(10);
+           break;
+        case BRAKE:
+
+            break;
+
+        default:
+            break;
+    }    
+    return 0;
+
+}
 
 void lightContol_FrontLight(uint8_t light)
 {
@@ -140,10 +231,18 @@ void updateCarState(void)
                     carState.contactKey = rxdata[0];
                 if(rxdata[0]==0){
                     XF_post(lightControl_Process,E_CONTACT_OFF,0);
+                    XF_post(motorControl_Process,E_CONTACT_OFF,0);
                 }else{
                     XF_post(lightControl_Process,E_CONTACT_ON,0);
+                    XF_post(motorControl_Process,E_CONTACT_OFF,0);
                 }
             // Freinage
+            case ID_BRAKE_PEDAL:
+                if(rxdata[0]>=0){
+                    XF_post(lightControl_Process,E_HIGH_BRAKE,0);
+                }else if(rxdata[0]>=0){
+                    XF_post(lightControl_Process,E_HIGH_BRAKE,0);
+                }
             case ID_BRAKE_PEDAL:
                 if(rxdata[0]>=0){
                     XF_post(lightControl_Process,E_HIGH_BRAKE,0);

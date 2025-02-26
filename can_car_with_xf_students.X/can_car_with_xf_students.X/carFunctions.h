@@ -37,7 +37,10 @@ typedef enum
     E_INIT,
     E_CONTACT_OFF,
     E_CONTACT_ON,
-    E_HIGH_BRAKE
+    E_HIGH_BRAKE,
+    E_START_STOP,
+    E_TEMPOMAT_ON,
+    E_TEMPOMAT_OFF
     // TODO complete code
             
 }Event_id;
@@ -45,10 +48,13 @@ typedef enum
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include "xf/xf.h"
+
+bool motorControl_Process(Event* ev);
 bool lightControl_Process(struct Event_* ev);
 
 void updateCarState(void);
 
+void motorControl(bool state);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
