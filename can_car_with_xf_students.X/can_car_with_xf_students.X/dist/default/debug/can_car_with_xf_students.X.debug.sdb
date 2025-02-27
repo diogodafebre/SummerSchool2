@@ -835,7 +835,7 @@ BRAKE 3
 [v _lightContol_BackLight lightContol_BackLight `R(v  1 e 1 0 ]
 "145
 [v _lightControl_Process lightControl_Process `R(a  1 e 1 0 ]
-"218
+"223
 [v _updateCarState updateCarState `R(v  1 e 1 0 ]
 "43 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\lcd/lcd.c
 [v _LCD_2x16_WriteCmd LCD_2x16_WriteCmd `R(v  1 s 1 LCD_2x16_WriteCmd ]
@@ -1291,11 +1291,11 @@ BRAKE 3
 [v _mObj mObj `S691  1 a 6 6 ]
 "91
 } 12
-"218 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
+"223 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
 [v _updateCarState updateCarState `R(v  1 e 1 0 ]
 {
 [s S24 _CAN_MSGOBJ_ID 6 `ul 1 ID 4 0 `uc 1 SID11 1 4 `uc 1 unimplemented1 1 5 ]
-"221
+"226
 [s S720 _CAN_RX_MSGOBJ_CTRL 3 `uc 1 DLC 1 0 :4:0 
 `uc 1 IDE 1 0 :1:4 
 `uc 1 RTR 1 0 :1:5 
@@ -1305,9 +1305,9 @@ BRAKE 3
 [s S728 . 13 `S24 1 id 6 0 `S720 1 ctrl 3 6 `ul 1 timeStamp 4 9 ]
 [u S732 _CAN_RX_MSGOBJ 16 `S728 1 bF 13 0 `[4]ul 1 word 16 0 `[16]uc 1 byte 16 0 ]
 [v _rxObj rxObj `S732  1 a 16 0 ]
-"222
+"227
 [v _rxdata rxdata `[8]uc  1 a 8 16 ]
-"268
+"273
 } 24
 "274 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\xf/xf.c
 [v _XF_post XF_post `R(uc  1 e 1 0 ]
@@ -1614,7 +1614,7 @@ BRAKE 3
 [v lightControl_Process@state state `E6673  1 s 1 state ]
 "155
 [v lightControl_Process@oldState oldState `E6673  1 s 1 oldState ]
-"216
+"221
 } 0
 "37
 [v _motorControl_Process motorControl_Process `R(a  1 e 1 0 ]

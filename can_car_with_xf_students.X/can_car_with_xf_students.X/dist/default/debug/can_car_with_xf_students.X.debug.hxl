@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o
+ C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o
  -Odist/default/debug\can_car_with_xf_students.X.debug.hex
  -logfile=dist/default/debug\can_car_with_xf_students.X.debug.hxl
  -addressing=1
@@ -9,21 +9,21 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
-  8h - B5h		(C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
-  FF8Ch - FFFEh		(C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
-  10000h - 1492Fh		(C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
-  1FFF8h - 1FFFDh		(C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
+  0h - 3h		(C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
+  8h - B5h		(C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
+  FF8Ch - FFFEh		(C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
+  10000h - 1497Fh		(C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
+  1FFF8h - 1FFFDh		(C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
  Unused ranges:
   4h - 7h
   B6h - FF8Bh
   FFFFh - FFFFh
-  14930h - 1FFF7h
+  14980h - 1FFF7h
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -1219,6 +1219,11 @@
 00014900 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00014910 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00014920 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00014930 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00014940 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00014950 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00014960 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00014970 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------
 0001FFF0 | -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 -- --
 00020000 | --

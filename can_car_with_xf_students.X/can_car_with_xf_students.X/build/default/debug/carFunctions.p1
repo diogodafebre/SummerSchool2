@@ -1869,19 +1869,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;carFunctions.c: 208:         case BRAKE:
 [e :U 631 ]
 "209
-[; ;carFunctions.c: 209:             lightContol_BackLight(100);
-[e ( _lightContol_BackLight (1 -> -> 100 `i `uc ]
+[; ;carFunctions.c: 209:             if (E_HIGH_BRAKE > 6) {
+[e $ ! > -> . `E6539 4 `i -> 6 `i 632  ]
+{
 "210
-[; ;carFunctions.c: 210:             break;
-[e $U 626  ]
-"212
-[; ;carFunctions.c: 212:         default:
+[; ;carFunctions.c: 210:               lightContol_BackLight(100);
+[e ( _lightContol_BackLight (1 -> -> 100 `i `uc ]
+"211
+[; ;carFunctions.c: 211:             }else {
+}
+[e $U 633  ]
 [e :U 632 ]
+{
+"212
+[; ;carFunctions.c: 212:               lightContol_BackLight(0);
+[e ( _lightContol_BackLight (1 -> -> 0 `i `uc ]
 "213
-[; ;carFunctions.c: 213:             break;
+[; ;carFunctions.c: 213:             }
+}
+[e :U 633 ]
+"215
+[; ;carFunctions.c: 215:             break;
 [e $U 626  ]
-"214
-[; ;carFunctions.c: 214:     }
+"217
+[; ;carFunctions.c: 217:         default:
+[e :U 634 ]
+"218
+[; ;carFunctions.c: 218:             break;
+[e $U 626  ]
+"219
+[; ;carFunctions.c: 219:     }
 }
 [e $U 626  ]
 [e :U 627 ]
@@ -1889,125 +1906,145 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> . `E6673 1 `ui 629
  , $ -> . `E6673 2 `ui 630
  , $ -> . `E6673 3 `ui 631
- 632 ]
+ 634 ]
 [e :U 626 ]
-"215
-[; ;carFunctions.c: 215:     return 0;
+"220
+[; ;carFunctions.c: 220:     return 0;
 [e ) -> -> 0 `i `a ]
 [e $UE 611  ]
-"216
-[; ;carFunctions.c: 216: }
+"221
+[; ;carFunctions.c: 221: }
 [e :UE 611 ]
 }
-"218
-[; ;carFunctions.c: 218: void updateCarState(void)
+"223
+[; ;carFunctions.c: 223: void updateCarState(void)
 [v _updateCarState `(v ~T0 @X0 1 ef ]
-"219
-[; ;carFunctions.c: 219: {
+"224
+[; ;carFunctions.c: 224: {
 {
 [e :U _updateCarState ]
 [f ]
-"221
-[; ;carFunctions.c: 221:     CAN_RX_MSGOBJ rxObj;
-[v _rxObj `S551 ~T0 @X0 1 a ]
-"222
-[; ;carFunctions.c: 222:     uint8_t rxdata[8];
-[v _rxdata `uc ~T0 @X0 -> 8 `i a ]
-"224
-[; ;carFunctions.c: 224:     if (CanReceive(&rxObj, rxdata) == 0)
-[e $ ! == -> ( _CanReceive (2 , &U _rxObj &U _rxdata `i -> 0 `i 634  ]
-"225
-[; ;carFunctions.c: 225:     {
-{
 "226
-[; ;carFunctions.c: 226:         switch (rxObj.bF.id.ID & 0x3F0)
-[e $U 636  ]
+[; ;carFunctions.c: 226:     CAN_RX_MSGOBJ rxObj;
+[v _rxObj `S551 ~T0 @X0 1 a ]
 "227
-[; ;carFunctions.c: 227:         {
-{
+[; ;carFunctions.c: 227:     uint8_t rxdata[8];
+[v _rxdata `uc ~T0 @X0 -> 8 `i a ]
 "229
-[; ;carFunctions.c: 229:             case (0x05<<4):
-[e :U 637 ]
+[; ;carFunctions.c: 229:     if (CanReceive(&rxObj, rxdata) == 0)
+[e $ ! == -> ( _CanReceive (2 , &U _rxObj &U _rxdata `i -> 0 `i 636  ]
 "230
-[; ;carFunctions.c: 230:                 carState.contactKey = rxdata[0];
-[e = . _carState 11 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
+[; ;carFunctions.c: 230:     {
+{
+"231
+[; ;carFunctions.c: 231:         switch (rxObj.bF.id.ID & 0x3F0)
+[e $U 638  ]
 "232
-[; ;carFunctions.c: 232:                 if (rxdata[0] == 0)
-[e $ ! == -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 0 `i 638  ]
-"233
-[; ;carFunctions.c: 233:                 {
+[; ;carFunctions.c: 232:         {
 {
 "234
-[; ;carFunctions.c: 234:                     XF_post(lightControl_Process, E_CONTACT_OFF, 0);
-[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 2 `uc -> -> 0 `i `us ]
+[; ;carFunctions.c: 234:             case (0x05<<4):
+[e :U 639 ]
 "235
-[; ;carFunctions.c: 235:                     XF_post(motorControl_Process, E_CONTACT_OFF, 0);
-[e ( _XF_post (3 , , &U _motorControl_Process -> . `E6539 2 `uc -> -> 0 `i `us ]
-"236
-[; ;carFunctions.c: 236:                 }
-}
-[e $U 639  ]
+[; ;carFunctions.c: 235:                 carState.contactKey = rxdata[0];
+[e = . _carState 11 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
 "237
-[; ;carFunctions.c: 237:                 else
-[e :U 638 ]
+[; ;carFunctions.c: 237:                 if (rxdata[0] == 0)
+[e $ ! == -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 0 `i 640  ]
 "238
 [; ;carFunctions.c: 238:                 {
 {
 "239
-[; ;carFunctions.c: 239:                     XF_post(lightControl_Process, E_CONTACT_ON, 0);
-[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 3 `uc -> -> 0 `i `us ]
+[; ;carFunctions.c: 239:                     XF_post(lightControl_Process, E_CONTACT_OFF, 0);
+[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 2 `uc -> -> 0 `i `us ]
 "240
-[; ;carFunctions.c: 240:                     XF_post(motorControl_Process, E_CONTACT_ON, 0);
-[e ( _XF_post (3 , , &U _motorControl_Process -> . `E6539 3 `uc -> -> 0 `i `us ]
+[; ;carFunctions.c: 240:                     XF_post(motorControl_Process, E_CONTACT_OFF, 0);
+[e ( _XF_post (3 , , &U _motorControl_Process -> . `E6539 2 `uc -> -> 0 `i `us ]
 "241
 [; ;carFunctions.c: 241:                 }
 }
-[e :U 639 ]
+[e $U 641  ]
 "242
-[; ;carFunctions.c: 242:                 break;
-[e $U 635  ]
-"245
-[; ;carFunctions.c: 245:             case (0x04<<4):
+[; ;carFunctions.c: 242:                 else
 [e :U 640 ]
-"246
-[; ;carFunctions.c: 246:                 carState.brakePedal = rxdata[0];
-[e = . _carState 9 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
-"248
-[; ;carFunctions.c: 248:                 if (rxdata[0] > 0)
-[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 0 `i 641  ]
-"249
-[; ;carFunctions.c: 249:                 {
+"243
+[; ;carFunctions.c: 243:                 {
 {
-"250
-[; ;carFunctions.c: 250:                     XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
-[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 4 `uc -> -> 0 `i `us ]
-"251
-[; ;carFunctions.c: 251:                 }
+"244
+[; ;carFunctions.c: 244:                     XF_post(lightControl_Process, E_CONTACT_ON, 0);
+[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 3 `uc -> -> 0 `i `us ]
+"245
+[; ;carFunctions.c: 245:                     XF_post(motorControl_Process, E_CONTACT_ON, 0);
+[e ( _XF_post (3 , , &U _motorControl_Process -> . `E6539 3 `uc -> -> 0 `i `us ]
+"246
+[; ;carFunctions.c: 246:                 }
 }
 [e :U 641 ]
-"252
-[; ;carFunctions.c: 252:                 break;
-[e $U 635  ]
-"263
-[; ;carFunctions.c: 263:             default:
+"247
+[; ;carFunctions.c: 247:                 break;
+[e $U 637  ]
+"250
+[; ;carFunctions.c: 250:             case (0x04<<4):
 [e :U 642 ]
+"251
+[; ;carFunctions.c: 251:                 carState.brakePedal = rxdata[0];
+[e = . _carState 9 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
+"253
+[; ;carFunctions.c: 253:                 if (rxdata[0] > 6)
+[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 643  ]
+"254
+[; ;carFunctions.c: 254:                 {
+{
+"255
+[; ;carFunctions.c: 255:                     XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
+[e ( _XF_post (3 , , &U _lightControl_Process -> . `E6539 4 `uc -> -> 0 `i `us ]
+"256
+[; ;carFunctions.c: 256:                 }
+}
+[e :U 643 ]
+"257
+[; ;carFunctions.c: 257:                 break;
+[e $U 637  ]
+"261
+[; ;carFunctions.c: 261:             case (0x14<<4):
+[e :U 644 ]
+"262
+[; ;carFunctions.c: 262:                 if (rxdata[0] > 6)
+[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 645  ]
+"263
+[; ;carFunctions.c: 263:                 {
+{
+"264
+[; ;carFunctions.c: 264:                     XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
+[e ( _XF_post (3 , , &U _motorControl_Process -> . `E6539 8 `uc -> -> 0 `i `us ]
 "265
-[; ;carFunctions.c: 265:                 break;
-[e $U 635  ]
+[; ;carFunctions.c: 265:                 }
+}
+[e :U 645 ]
 "266
-[; ;carFunctions.c: 266:         }
-}
-[e $U 635  ]
-[e :U 636 ]
-[e [\ & . . . _rxObj 0 0 0 -> -> -> 1008 `i `l `ul , $ -> -> << -> 5 `i -> 4 `i `l `ul 637
- , $ -> -> << -> 4 `i -> 4 `i `l `ul 640
- 642 ]
-[e :U 635 ]
-"267
-[; ;carFunctions.c: 267:     }
-}
-[e :U 634 ]
+[; ;carFunctions.c: 266:                 break;
+[e $U 637  ]
 "268
-[; ;carFunctions.c: 268: }
-[e :UE 633 ]
+[; ;carFunctions.c: 268:             default:
+[e :U 646 ]
+"270
+[; ;carFunctions.c: 270:                 break;
+[e $U 637  ]
+"271
+[; ;carFunctions.c: 271:         }
+}
+[e $U 637  ]
+[e :U 638 ]
+[e [\ & . . . _rxObj 0 0 0 -> -> -> 1008 `i `l `ul , $ -> -> << -> 5 `i -> 4 `i `l `ul 639
+ , $ -> -> << -> 4 `i -> 4 `i `l `ul 642
+ , $ -> -> << -> 20 `i -> 4 `i `l `ul 644
+ 646 ]
+[e :U 637 ]
+"272
+[; ;carFunctions.c: 272:     }
+}
+[e :U 636 ]
+"273
+[; ;carFunctions.c: 273: }
+[e :UE 635 ]
 }

@@ -11112,7 +11112,12 @@ _Bool lightControl_Process(Event* ev)
             lightContol_BackLight(50);
             break;
         case BRAKE:
-            lightContol_BackLight(100);
+            if (E_HIGH_BRAKE > 6) {
+              lightContol_BackLight(100);
+            }else {
+              lightContol_BackLight(0);
+            }
+
             break;
 
         default:
@@ -11151,12 +11156,21 @@ void updateCarState(void)
             case (0x04<<4):
                 carState.brakePedal = rxdata[0];
 
-                if (rxdata[0] > 0)
+                if (rxdata[0] > 6)
                 {
                     XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
                 }
                 break;
-# 263 "carFunctions.c"
+
+
+
+            case (0x14<<4):
+                if (rxdata[0] > 6)
+                {
+                    XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
+                }
+                break;
+
             default:
 
                 break;

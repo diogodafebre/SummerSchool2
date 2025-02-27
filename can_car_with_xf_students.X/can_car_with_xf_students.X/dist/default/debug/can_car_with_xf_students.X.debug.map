@@ -6,10 +6,10 @@ Linker command line:
   --edf=C:\Program Files\Microchip\xc8\v2.50\pic\dat\20240725155939_en.msgs \
   -cn -h+dist/default/debug\can_car_with_xf_students.X.debug.sym \
   --cmf=dist/default/debug\can_car_with_xf_students.X.debug.cmf -z \
-  -Q18F97J60 -oC:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_3.o \
+  -Q18F97J60 -oC:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_3.o \
   --defsym=__MPLAB_BUILD=1 --fixupoverflow=error \
   -Mdist/default/debug/can_car_with_xf_students.X.debug.map \
-  --md=C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_0.dat -E1 \
+  --md=C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=03E2h-0E7Fh -pstack=STACK \
   -ACODE=00h-01FFF7h -ACONST=00h-01FFF7h \
   -ASMALLCONST=01000h-010FFhx495,01FF00h-01FFF7h \
@@ -30,7 +30,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_9.o \
+  C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_9.o \
   dist/default/debug\can_car_with_xf_students.X.debug.o 
 
 Object code version is 3.11
@@ -40,7 +40,7 @@ Machine type is 18F97J60
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\diogo\AppData\Local\Temp\xcAs1fv4.\driver_tmp_9.o
+C:\Users\diogo\AppData\Local\Temp\xcAs1c4g.\driver_tmp_9.o
                 stack                               3E2      3E2      A9E      3E2       2
                 config                            1FFF8    1FFF8        6        0       4
                 init                                 AE       AE        8        4       0
@@ -50,87 +50,87 @@ dist/default/debug\can_car_with_xf_students.X.debug.o
                 config                            1FFF8    1FFF8        6        0       4
                 temp                                  1        1       20        1       1
                 mediumconst                        FF8C     FF8C       74     7FC6       0
-                text74                            14566    14566       58     8000       0
-                text73                            13304    13304       FE     8000       0
-                text72                            1492E    1492E        2     8000       0
-                text71                            1475A    1475A       36     8000       0
-                text70                            14790    14790       30     8000       0
-                text68                            139E4    139E4       C4     8000       0
-                text67                            135DA    135DA       D8     8000       0
+                text74                            145B6    145B6       58     8000       0
+                text73                            13354    13354       FE     8000       0
+                text72                            1497E    1497E        2     8000       0
+                text71                            147AA    147AA       36     8000       0
+                text70                            147E0    147E0       30     8000       0
+                text68                            13A34    13A34       C4     8000       0
+                text67                            1362A    1362A       D8     8000       0
                 text66                            11C18    11C18      24C     8000       0
                 text65                            1173A    1173A      280     8000       0
                 text64                            119BA    119BA      25E     8000       0
-                text63                            1391A    1391A       CA     8000       0
-                text62                            14440    14440       64     8000       0
-                text61                            144A4    144A4       62     8000       0
-                text60                            145BE    145BE       56     8000       0
-                text59                            14278    14278       86     8000       0
-                text58                            12E2E    12E2E      142     8000       0
-                text57                            13B60    13B60       B6     8000       0
-                text56                            147EE    147EE       2C     8000       0
-                text55                            13AA8    13AA8       B8     8000       0
-                text54                            14506    14506       60     8000       0
-                text53                            1488A    1488A       1C     8000       0
-                text52                            1481A    1481A       28     8000       0
-                text51                            1270E    1270E      182     8000       0
-                text50                            130B0    130B0      13A     8000       0
-                text49                            12F70    12F70      140     8000       0
-                text48                            13402    13402       EE     8000       0
+                text63                            1396A    1396A       CA     8000       0
+                text62                            14490    14490       64     8000       0
+                text61                            144F4    144F4       62     8000       0
+                text60                            1460E    1460E       56     8000       0
+                text59                            142C8    142C8       86     8000       0
+                text58                            12E7E    12E7E      142     8000       0
+                text57                            13BB0    13BB0       B6     8000       0
+                text56                            1483E    1483E       2C     8000       0
+                text55                            13AF8    13AF8       B8     8000       0
+                text54                            14556    14556       60     8000       0
+                text53                            148DA    148DA       1C     8000       0
+                text52                            1486A    1486A       28     8000       0
+                text51                            128DE    128DE      182     8000       0
+                text50                            13100    13100      13A     8000       0
+                text49                            12FC0    12FC0      140     8000       0
+                text48                            13452    13452       EE     8000       0
                 text47                            11E64    11E64      20E     8000       0
-                text46                            14156    14156       92     8000       0
+                text46                            141A6    141A6       92     8000       0
                 text45                            1117E    1117E      334     8000       0
                 text44                            10E34    10E34      34A     8000       0
-                text43                            140C0    140C0       96     8000       0
-                text42                            14372    14372       6A     8000       0
-                text41                            1492A    1492A        4     8000       0
-                text40                            14916    14916        8     8000       0
-                text39                            147C0    147C0       2E     8000       0
-                text38                            14906    14906       10     8000       0
-                text37                            14868    14868       22     8000       0
-                text36                            146E8    146E8       3A     8000       0
-                text35                            148F0    148F0       16     8000       0
-                text34                            148D8    148D8       18     8000       0
-                text33                            148C0    148C0       18     8000       0
-                text32                            12CE4    12CE4      14A     8000       0
-                text31                            1384E    1384E       CC     8000       0
-                text30                            14028    14028       98     8000       0
+                text43                            14110    14110       96     8000       0
+                text42                            143C2    143C2       6A     8000       0
+                text41                            1497A    1497A        4     8000       0
+                text40                            14966    14966        8     8000       0
+                text39                            14810    14810       2E     8000       0
+                text38                            14956    14956       10     8000       0
+                text37                            148B8    148B8       22     8000       0
+                text36                            14738    14738       3A     8000       0
+                text35                            14940    14940       16     8000       0
+                text34                            14928    14928       18     8000       0
+                text33                            14910    14910       18     8000       0
+                text32                            12D34    12D34      14A     8000       0
+                text31                            1389E    1389E       CC     8000       0
+                text30                            14078    14078       98     8000       0
                 text29                            12072    12072      1DE     8000       0
                 text28                            114B2    114B2      288     8000       0
-                text27                            13E2C    13E2C       AE     8000       0
-                text26                            131EA    131EA      11A     8000       0
+                text27                            13E7C    13E7C       AE     8000       0
+                text26                            1323A    1323A      11A     8000       0
                 text25                            10000    10000      74C     8000       0
-                text24                            13EDA    13EDA       AA     8000       0
-                text23                            13CCA    13CCA       B4     8000       0
-                text22                            13D7E    13D7E       AE     8000       0
-                text21                            13C16    13C16       B4     8000       0
-                text20                            12250    12250      1AC     8000       0
-                text19                            12588    12588      186     8000       0
-                text18                            141E8    141E8       90     8000       0
-                text17                            14614    14614       4E     8000       0
-                text16                            12B90    12B90      154     8000       0
-                text15                            13F84    13F84       A4     8000       0
-                text14                            123FC    123FC      18C     8000       0
-                text13                            142FE    142FE       74     8000       0
+                text24                            13F2A    13F2A       AA     8000       0
+                text23                            13D1A    13D1A       B4     8000       0
+                text22                            13DCE    13DCE       AE     8000       0
+                text21                            13C66    13C66       B4     8000       0
+                text20                            12420    12420      1AC     8000       0
+                text19                            12758    12758      186     8000       0
+                text18                            14238    14238       90     8000       0
+                text17                            14664    14664       4E     8000       0
+                text16                            12BE0    12BE0      154     8000       0
+                text15                            13FD4    13FD4       A4     8000       0
+                text14                            125CC    125CC      18C     8000       0
+                text13                            1434E    1434E       74     8000       0
                 text12                            1074C    1074C      6E8     8000       0
-                text11                            143DC    143DC       64     8000       0
-                text10                            148A6    148A6       1A     8000       0
-                text9                             146AC    146AC       3C     8000       0
-                text8                             14842    14842       26     8000       0
-                text7                             14722    14722       38     8000       0
-                text6                             14924    14924        6     8000       0
-                text5                             1491E    1491E        6     8000       0
-                text4                             134F0    134F0       EA     8000       0
-                text3                             12A10    12A10      180     8000       0
-                text2                             13782    13782       CC     8000       0
-                text1                             12890    12890      180     8000       0
-                text0                             136B2    136B2       D0     8000       0
+                text11                            1442C    1442C       64     8000       0
+                text10                            148F6    148F6       1A     8000       0
+                text9                             146FC    146FC       3C     8000       0
+                text8                             14892    14892       26     8000       0
+                text7                             14772    14772       38     8000       0
+                text6                             14974    14974        6     8000       0
+                text5                             1496E    1496E        6     8000       0
+                text4                             13540    13540       EA     8000       0
+                text3                             12A60    12A60      180     8000       0
+                text2                             137D2    137D2       CC     8000       0
+                text1                             12250    12250      1D0     8000       0
+                text0                             13702    13702       D0     8000       0
                 cstackCOMRAM                         40       40       10        1       1
                 bssBIGRAM                           2C8      2C8      11A      2C8       1
                 bssBANK2                            200      200       C8      200       1
                 bssBANK1                            100      100       C8      100       1
                 bssBANK0                             60       60       3B       60       1
                 bssCOMRAM                            21       21       1F        1       1
-                cinit                             14662    14662       4A     8000       0
+                cinit                             146B2    146B2       4A     8000       0
                 nvCOMRAM                             50       50        3        1       1
 
 TOTAL           Name                               Link     Load   Length     Space
@@ -141,81 +141,81 @@ TOTAL           Name                               Link     Load   Length     Sp
                 intcode                               8        8       A6         0
                 init                                 AE       AE        8         0
                 reset_vec                             0        0        4         0
-                text74                            14566    14566       58         0
-                text73                            13304    13304       FE         0
-                text72                            1492E    1492E        2         0
-                text71                            1475A    1475A       36         0
-                text70                            14790    14790       30         0
-                text68                            139E4    139E4       C4         0
-                text67                            135DA    135DA       D8         0
+                text74                            145B6    145B6       58         0
+                text73                            13354    13354       FE         0
+                text72                            1497E    1497E        2         0
+                text71                            147AA    147AA       36         0
+                text70                            147E0    147E0       30         0
+                text68                            13A34    13A34       C4         0
+                text67                            1362A    1362A       D8         0
                 text66                            11C18    11C18      24C         0
                 text65                            1173A    1173A      280         0
                 text64                            119BA    119BA      25E         0
-                text63                            1391A    1391A       CA         0
-                text62                            14440    14440       64         0
-                text61                            144A4    144A4       62         0
-                text60                            145BE    145BE       56         0
-                text59                            14278    14278       86         0
-                text58                            12E2E    12E2E      142         0
-                text57                            13B60    13B60       B6         0
-                text56                            147EE    147EE       2C         0
-                text55                            13AA8    13AA8       B8         0
-                text54                            14506    14506       60         0
-                text53                            1488A    1488A       1C         0
-                text52                            1481A    1481A       28         0
-                text51                            1270E    1270E      182         0
-                text50                            130B0    130B0      13A         0
-                text49                            12F70    12F70      140         0
-                text48                            13402    13402       EE         0
+                text63                            1396A    1396A       CA         0
+                text62                            14490    14490       64         0
+                text61                            144F4    144F4       62         0
+                text60                            1460E    1460E       56         0
+                text59                            142C8    142C8       86         0
+                text58                            12E7E    12E7E      142         0
+                text57                            13BB0    13BB0       B6         0
+                text56                            1483E    1483E       2C         0
+                text55                            13AF8    13AF8       B8         0
+                text54                            14556    14556       60         0
+                text53                            148DA    148DA       1C         0
+                text52                            1486A    1486A       28         0
+                text51                            128DE    128DE      182         0
+                text50                            13100    13100      13A         0
+                text49                            12FC0    12FC0      140         0
+                text48                            13452    13452       EE         0
                 text47                            11E64    11E64      20E         0
-                text46                            14156    14156       92         0
+                text46                            141A6    141A6       92         0
                 text45                            1117E    1117E      334         0
                 text44                            10E34    10E34      34A         0
-                text43                            140C0    140C0       96         0
-                text42                            14372    14372       6A         0
-                text41                            1492A    1492A        4         0
-                text40                            14916    14916        8         0
-                text39                            147C0    147C0       2E         0
-                text38                            14906    14906       10         0
-                text37                            14868    14868       22         0
-                text36                            146E8    146E8       3A         0
-                text35                            148F0    148F0       16         0
-                text34                            148D8    148D8       18         0
-                text33                            148C0    148C0       18         0
-                text32                            12CE4    12CE4      14A         0
-                text31                            1384E    1384E       CC         0
-                text30                            14028    14028       98         0
+                text43                            14110    14110       96         0
+                text42                            143C2    143C2       6A         0
+                text41                            1497A    1497A        4         0
+                text40                            14966    14966        8         0
+                text39                            14810    14810       2E         0
+                text38                            14956    14956       10         0
+                text37                            148B8    148B8       22         0
+                text36                            14738    14738       3A         0
+                text35                            14940    14940       16         0
+                text34                            14928    14928       18         0
+                text33                            14910    14910       18         0
+                text32                            12D34    12D34      14A         0
+                text31                            1389E    1389E       CC         0
+                text30                            14078    14078       98         0
                 text29                            12072    12072      1DE         0
                 text28                            114B2    114B2      288         0
-                text27                            13E2C    13E2C       AE         0
-                text26                            131EA    131EA      11A         0
+                text27                            13E7C    13E7C       AE         0
+                text26                            1323A    1323A      11A         0
                 text25                            10000    10000      74C         0
-                text24                            13EDA    13EDA       AA         0
-                text23                            13CCA    13CCA       B4         0
-                text22                            13D7E    13D7E       AE         0
-                text21                            13C16    13C16       B4         0
-                text20                            12250    12250      1AC         0
-                text19                            12588    12588      186         0
-                text18                            141E8    141E8       90         0
-                text17                            14614    14614       4E         0
-                text16                            12B90    12B90      154         0
-                text15                            13F84    13F84       A4         0
-                text14                            123FC    123FC      18C         0
-                text13                            142FE    142FE       74         0
+                text24                            13F2A    13F2A       AA         0
+                text23                            13D1A    13D1A       B4         0
+                text22                            13DCE    13DCE       AE         0
+                text21                            13C66    13C66       B4         0
+                text20                            12420    12420      1AC         0
+                text19                            12758    12758      186         0
+                text18                            14238    14238       90         0
+                text17                            14664    14664       4E         0
+                text16                            12BE0    12BE0      154         0
+                text15                            13FD4    13FD4       A4         0
+                text14                            125CC    125CC      18C         0
+                text13                            1434E    1434E       74         0
                 text12                            1074C    1074C      6E8         0
-                text11                            143DC    143DC       64         0
-                text10                            148A6    148A6       1A         0
-                text9                             146AC    146AC       3C         0
-                text8                             14842    14842       26         0
-                text7                             14722    14722       38         0
-                text6                             14924    14924        6         0
-                text5                             1491E    1491E        6         0
-                text4                             134F0    134F0       EA         0
-                text3                             12A10    12A10      180         0
-                text2                             13782    13782       CC         0
-                text1                             12890    12890      180         0
-                text0                             136B2    136B2       D0         0
-                cinit                             14662    14662       4A         0
+                text11                            1442C    1442C       64         0
+                text10                            148F6    148F6       1A         0
+                text9                             146FC    146FC       3C         0
+                text8                             14892    14892       26         0
+                text7                             14772    14772       38         0
+                text6                             14974    14974        6         0
+                text5                             1496E    1496E        6         0
+                text4                             13540    13540       EA         0
+                text3                             12A60    12A60      180         0
+                text2                             137D2    137D2       CC         0
+                text1                             12250    12250      1D0         0
+                text0                             13702    13702       D0         0
+                cinit                             146B2    146B2       4A         0
 
         CLASS   CONST          
 
@@ -298,7 +298,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 bssBIGRAM                      0002C8  00011A  0003E2       2C8       1  BIGRAM  
                 stack                          0003E2  000A9E  000E80       3E2       2  STACK   
                 mediumconst                    00FF8C  000074  010000      7FC6       0  MEDIUMCO
-                text25                         010000  004930  014930      8000       0  CODE    
+                text25                         010000  004980  014980      8000       0  CODE    
 
 
 UNUSED ADDRESS RANGES
@@ -328,13 +328,13 @@ UNUSED ADDRESS RANGES
                          00F60-00FFF              A0
         CODE             00004-00007               4
                          000B6-0FF8B            FED6
-                         14930-1FFF7            B6C8
+                         14980-1FFF7            B678
         COMRAM           00053-0005F               D
         CONST            00004-00007               4
                          000B6-0FF8B            FED6
-                         14930-1FFF7            B6C8
+                         14980-1FFF7            B678
         MEDIUMCONST      01000-0FF8B            EF8C
-                         14930-1FFF7            B6C8
+                         14980-1FFF7            B678
         RAM              0009B-000FF              65
                          001C8-001FF              38
                          003E2-00E7F             100
@@ -342,57 +342,57 @@ UNUSED ADDRESS RANGES
         SFR              00E80-00EFF              80
                          00F60-00FFF              A0
         SMALLCONST       01000-0FF8B             100
-                         14930-1FFF7             100
+                         14980-1FFF7             100
 
                                   Symbol Table
 
 TMR0_ISR@CountCallBack                                    bssCOMRAM     00035
 _ADCON1bits                                               (abs)         00FC1
 _CanInit                                                  text47        11E64
-_CanReceive                                               text11        143DC
-_CanSend                                                  text24        13EDA
-_CanSetFilter                                             text42        14372
+_CanReceive                                               text11        1442C
+_CanSend                                                  text24        13F2A
+_CanSetFilter                                             text42        143C2
 _DRV_CANFDSPI_BitTimeConfigureNominal40MHz                text66        11C18
 _DRV_CANFDSPI_Configure                                   text65        1173A
 _DRV_CANFDSPI_ConfigureObjectReset                        text64        119BA
 _DRV_CANFDSPI_DlcToDataBytes                              text29        12072
-_DRV_CANFDSPI_FilterDisable                               text46        14156
+_DRV_CANFDSPI_FilterDisable                               text46        141A6
 _DRV_CANFDSPI_FilterMaskConfigure                         text45        1117E
 _DRV_CANFDSPI_FilterObjectConfigure                       text44        10E34
-_DRV_CANFDSPI_FilterToFifoLink                            text43        140C0
-_DRV_CANFDSPI_ModuleEventEnable                           text62        14440
-_DRV_CANFDSPI_OperationModeSelect                         text59        14278
-_DRV_CANFDSPI_ReadByte                                    text61        144A4
-_DRV_CANFDSPI_ReadByteArray                               text14        123FC
+_DRV_CANFDSPI_FilterToFifoLink                            text43        14110
+_DRV_CANFDSPI_ModuleEventEnable                           text62        14490
+_DRV_CANFDSPI_OperationModeSelect                         text59        142C8
+_DRV_CANFDSPI_ReadByte                                    text61        144F4
+_DRV_CANFDSPI_ReadByteArray                               text14        125CC
 _DRV_CANFDSPI_ReadWordArray                               text28        114B2
-_DRV_CANFDSPI_ReceiveChannelConfigure                     text58        12E2E
-_DRV_CANFDSPI_ReceiveChannelEventGet                      text15        13F84
-_DRV_CANFDSPI_ReceiveChannelUpdate                        text13        142FE
+_DRV_CANFDSPI_ReceiveChannelConfigure                     text58        12E7E
+_DRV_CANFDSPI_ReceiveChannelEventGet                      text15        13FD4
+_DRV_CANFDSPI_ReceiveChannelUpdate                        text13        1434E
 _DRV_CANFDSPI_ReceiveMessageGet                           text12        1074C
-_DRV_CANFDSPI_Reset                                       text56        147EE
-_DRV_CANFDSPI_TefConfigure                                text55        13AA8
-_DRV_CANFDSPI_TimeStampEnable                             text54        14506
-_DRV_CANFDSPI_TimeStampPrescalerSet                       text53        1488A
-_DRV_CANFDSPI_TimeStampSet                                text52        1481A
-_DRV_CANFDSPI_TransmitChannelConfigure                    text51        1270E
-_DRV_CANFDSPI_TransmitChannelConfigureObjectReset         text50        130B0
-_DRV_CANFDSPI_TransmitChannelEventGet                     text30        14028
+_DRV_CANFDSPI_Reset                                       text56        1483E
+_DRV_CANFDSPI_TefConfigure                                text55        13AF8
+_DRV_CANFDSPI_TimeStampEnable                             text54        14556
+_DRV_CANFDSPI_TimeStampPrescalerSet                       text53        148DA
+_DRV_CANFDSPI_TimeStampSet                                text52        1486A
+_DRV_CANFDSPI_TransmitChannelConfigure                    text51        128DE
+_DRV_CANFDSPI_TransmitChannelConfigureObjectReset         text50        13100
+_DRV_CANFDSPI_TransmitChannelEventGet                     text30        14078
 _DRV_CANFDSPI_TransmitChannelLoad                         text25        10000
-_DRV_CANFDSPI_TransmitChannelUpdate                       text27        13E2C
-_DRV_CANFDSPI_TransmitQueueConfigure                      text49        12F70
-_DRV_CANFDSPI_TransmitQueueConfigureObjectReset           text48        13402
-_DRV_CANFDSPI_WriteByte                                   text60        145BE
-_DRV_CANFDSPI_WriteByteArray                              text26        131EA
-_DRV_CANFDSPI_WriteHalfWord                               text63        1391A
-_DRV_CANFDSPI_WriteWord                                   text67        135DA
-_ENTERCRITICAL                                            text34        148D8
-_Event_getDelay                                           text8         14842
-_Event_init                                               text17        14614
-_Event_setDelay                                           text7         14722
-_Event_setId                                              text10        148A6
-_Event_setPE                                              text9         146AC
+_DRV_CANFDSPI_TransmitChannelUpdate                       text27        13E7C
+_DRV_CANFDSPI_TransmitQueueConfigure                      text49        12FC0
+_DRV_CANFDSPI_TransmitQueueConfigureObjectReset           text48        13452
+_DRV_CANFDSPI_WriteByte                                   text60        1460E
+_DRV_CANFDSPI_WriteByteArray                              text26        1323A
+_DRV_CANFDSPI_WriteHalfWord                               text63        1396A
+_DRV_CANFDSPI_WriteWord                                   text67        1362A
+_ENTERCRITICAL                                            text34        14928
+_Event_getDelay                                           text8         14892
+_Event_init                                               text17        14664
+_Event_setDelay                                           text7         14772
+_Event_setId                                              text10        148F6
+_Event_setPE                                              text9         146FC
 _INTCONbits                                               (abs)         00FF2
-_INTERRUPT_Initialize                                     text41        1492A
+_INTERRUPT_Initialize                                     text41        1497A
 _INTERRUPT_InterruptManager                               intcode       00008
 _LATA                                                     (abs)         00F89
 _LATB                                                     (abs)         00F8A
@@ -404,14 +404,14 @@ _LATG                                                     (abs)         00F8F
 _LATGbits                                                 (abs)         00F8F
 _LATH                                                     (abs)         00F90
 _LATJ                                                     (abs)         00F91
-_LEAVECRITICAL                                            text33        148C0
+_LEAVECRITICAL                                            text33        14910
 _OSCCON                                                   (abs)         00FD3
-_OSCILLATOR_Initialize                                    text40        14916
+_OSCILLATOR_Initialize                                    text40        14966
 _OSCTUNE                                                  (abs)         00F9B
-_PIN_MANAGER_Initialize                                   text39        147C0
+_PIN_MANAGER_Initialize                                   text39        14810
 _RCONbits                                                 (abs)         00FD0
-_SPI2_Initialize                                          text38        14906
-_SPI2_Open                                                text57        13B60
+_SPI2_Initialize                                          text38        14956
+_SPI2_Open                                                text57        13BB0
 _SSP2ADD                                                  (abs)         00F65
 _SSP2BUF                                                  (abs)         00F66
 _SSP2CON1                                                 (abs)         00F63
@@ -419,18 +419,18 @@ _SSP2CON1bits                                             (abs)         00F63
 _SSP2CON2                                                 (abs)         00F62
 _SSP2STAT                                                 (abs)         00F64
 _SSP2STATbits                                             (abs)         00F64
-_SYSTEM_Initialize                                        text35        148F0
-_SpiTransfer                                              text68        139E4
+_SYSTEM_Initialize                                        text35        14940
+_SpiTransfer                                              text68        13A34
 _T0CON                                                    (abs)         00FD5
 _T0CONbits                                                (abs)         00FD5
 _TMR0H                                                    (abs)         00FD7
 _TMR0L                                                    (abs)         00FD6
-_TMR0_CallBack                                            text71        1475A
-_TMR0_DefaultInterruptHandler                             text72        1492E
-_TMR0_ISR                                                 text70        14790
-_TMR0_Initialize                                          text36        146E8
+_TMR0_CallBack                                            text71        147AA
+_TMR0_DefaultInterruptHandler                             text72        1497E
+_TMR0_ISR                                                 text70        147E0
+_TMR0_Initialize                                          text36        14738
 _TMR0_InterruptHandler                                    nvCOMRAM      00050
-_TMR0_SetInterruptHandler                                 text37        14868
+_TMR0_SetInterruptHandler                                 text37        148B8
 _TRISA                                                    (abs)         00F92
 _TRISB                                                    (abs)         00F93
 _TRISC                                                    (abs)         00F94
@@ -442,16 +442,16 @@ _TRISG                                                    (abs)         00F98
 _TRISGbits                                                (abs)         00F98
 _TRISH                                                    (abs)         00F99
 _TRISJ                                                    (abs)         00F9A
-_XF_decrementAndQueueTimers                               text73        13304
-_XF_executeOnce                                           text18        141E8
-_XF_init                                                  text16        12B90
-_XF_noMoreEvent                                           text6         14924
-_XF_noMoreTimer                                           text5         1491E
-_XF_popEvent                                              text31        1384E
-_XF_post                                                  text2         13782
-_XF_pushEvent                                             text3         12A10
-_XF_scheduleTimer                                         text4         134F0
-_XF_unscheduleTimer                                       text74        14566
+_XF_decrementAndQueueTimers                               text73        13354
+_XF_executeOnce                                           text18        14238
+_XF_init                                                  text16        12BE0
+_XF_noMoreEvent                                           text6         14974
+_XF_noMoreTimer                                           text5         1496E
+_XF_popEvent                                              text31        1389E
+_XF_post                                                  text2         137D2
+_XF_pushEvent                                             text3         12A60
+_XF_scheduleTimer                                         text4         13540
+_XF_unscheduleTimer                                       text74        145B6
 __HRAM                                                    (abs)         00000
 __H__absolute__                                           __absolute__  00000
 __Habs1                                                   abs1          00000
@@ -756,11 +756,11 @@ __Ltext73                                                 text73        00000
 __Ltext74                                                 text74        00000
 __Ltext8                                                  text8         00000
 __Ltext9                                                  text9         00000
-__S0                                                      (abs)         14930
+__S0                                                      (abs)         14980
 __S1                                                      (abs)         003E2
 __S2                                                      (abs)         00E80
 __S4                                                      (abs)         00000
-___awmod                                                  text32        12CE4
+___awmod                                                  text32        12D34
 ___extmem_base                                            (abs)         20000
 ___heap_hi                                                (abs)         00000
 ___heap_lo                                                (abs)         00000
@@ -776,190 +776,190 @@ ___stack_lo                                               stack         003E2
 __accesstop                                               (abs)         00060
 __activetblptr                                            (abs)         00003
 __end_of_CanInit                                          text47        12072
-__end_of_CanReceive                                       text11        14440
-__end_of_CanSend                                          text24        13F84
-__end_of_CanSetFilter                                     text42        143DC
+__end_of_CanReceive                                       text11        14490
+__end_of_CanSend                                          text24        13FD4
+__end_of_CanSetFilter                                     text42        1442C
 __end_of_DRV_CANFDSPI_BitTimeConfigureNominal40MHz        text66        11E64
 __end_of_DRV_CANFDSPI_Configure                           text65        119BA
 __end_of_DRV_CANFDSPI_ConfigureObjectReset                text64        11C18
 __end_of_DRV_CANFDSPI_DlcToDataBytes                      text29        12250
-__end_of_DRV_CANFDSPI_FilterDisable                       text46        141E8
+__end_of_DRV_CANFDSPI_FilterDisable                       text46        14238
 __end_of_DRV_CANFDSPI_FilterMaskConfigure                 text45        114B2
 __end_of_DRV_CANFDSPI_FilterObjectConfigure               text44        1117E
-__end_of_DRV_CANFDSPI_FilterToFifoLink                    text43        14156
-__end_of_DRV_CANFDSPI_ModuleEventEnable                   text62        144A4
-__end_of_DRV_CANFDSPI_OperationModeSelect                 text59        142FE
-__end_of_DRV_CANFDSPI_ReadByte                            text61        14506
-__end_of_DRV_CANFDSPI_ReadByteArray                       text14        12588
+__end_of_DRV_CANFDSPI_FilterToFifoLink                    text43        141A6
+__end_of_DRV_CANFDSPI_ModuleEventEnable                   text62        144F4
+__end_of_DRV_CANFDSPI_OperationModeSelect                 text59        1434E
+__end_of_DRV_CANFDSPI_ReadByte                            text61        14556
+__end_of_DRV_CANFDSPI_ReadByteArray                       text14        12758
 __end_of_DRV_CANFDSPI_ReadWordArray                       text28        1173A
-__end_of_DRV_CANFDSPI_ReceiveChannelConfigure             text58        12F70
-__end_of_DRV_CANFDSPI_ReceiveChannelEventGet              text15        14028
-__end_of_DRV_CANFDSPI_ReceiveChannelUpdate                text13        14372
+__end_of_DRV_CANFDSPI_ReceiveChannelConfigure             text58        12FC0
+__end_of_DRV_CANFDSPI_ReceiveChannelEventGet              text15        14078
+__end_of_DRV_CANFDSPI_ReceiveChannelUpdate                text13        143C2
 __end_of_DRV_CANFDSPI_ReceiveMessageGet                   text12        10E34
-__end_of_DRV_CANFDSPI_Reset                               text56        1481A
-__end_of_DRV_CANFDSPI_TefConfigure                        text55        13B60
-__end_of_DRV_CANFDSPI_TimeStampEnable                     text54        14566
-__end_of_DRV_CANFDSPI_TimeStampPrescalerSet               text53        148A6
-__end_of_DRV_CANFDSPI_TimeStampSet                        text52        14842
-__end_of_DRV_CANFDSPI_TransmitChannelConfigure            text51        12890
-__end_of_DRV_CANFDSPI_TransmitChannelConfigureObjectReset text50        131EA
-__end_of_DRV_CANFDSPI_TransmitChannelEventGet             text30        140C0
+__end_of_DRV_CANFDSPI_Reset                               text56        1486A
+__end_of_DRV_CANFDSPI_TefConfigure                        text55        13BB0
+__end_of_DRV_CANFDSPI_TimeStampEnable                     text54        145B6
+__end_of_DRV_CANFDSPI_TimeStampPrescalerSet               text53        148F6
+__end_of_DRV_CANFDSPI_TimeStampSet                        text52        14892
+__end_of_DRV_CANFDSPI_TransmitChannelConfigure            text51        12A60
+__end_of_DRV_CANFDSPI_TransmitChannelConfigureObjectReset text50        1323A
+__end_of_DRV_CANFDSPI_TransmitChannelEventGet             text30        14110
 __end_of_DRV_CANFDSPI_TransmitChannelLoad                 text25        1074C
-__end_of_DRV_CANFDSPI_TransmitChannelUpdate               text27        13EDA
-__end_of_DRV_CANFDSPI_TransmitQueueConfigure              text49        130B0
-__end_of_DRV_CANFDSPI_TransmitQueueConfigureObjectReset   text48        134F0
-__end_of_DRV_CANFDSPI_WriteByte                           text60        14614
-__end_of_DRV_CANFDSPI_WriteByteArray                      text26        13304
-__end_of_DRV_CANFDSPI_WriteHalfWord                       text63        139E4
-__end_of_DRV_CANFDSPI_WriteWord                           text67        136B2
-__end_of_ENTERCRITICAL                                    text34        148F0
-__end_of_Event_getDelay                                   text8         14868
-__end_of_Event_init                                       text17        14662
-__end_of_Event_setDelay                                   text7         1475A
-__end_of_Event_setId                                      text10        148C0
-__end_of_Event_setPE                                      text9         146E8
-__end_of_INTERRUPT_Initialize                             text41        1492E
+__end_of_DRV_CANFDSPI_TransmitChannelUpdate               text27        13F2A
+__end_of_DRV_CANFDSPI_TransmitQueueConfigure              text49        13100
+__end_of_DRV_CANFDSPI_TransmitQueueConfigureObjectReset   text48        13540
+__end_of_DRV_CANFDSPI_WriteByte                           text60        14664
+__end_of_DRV_CANFDSPI_WriteByteArray                      text26        13354
+__end_of_DRV_CANFDSPI_WriteHalfWord                       text63        13A34
+__end_of_DRV_CANFDSPI_WriteWord                           text67        13702
+__end_of_ENTERCRITICAL                                    text34        14940
+__end_of_Event_getDelay                                   text8         148B8
+__end_of_Event_init                                       text17        146B2
+__end_of_Event_setDelay                                   text7         147AA
+__end_of_Event_setId                                      text10        14910
+__end_of_Event_setPE                                      text9         14738
+__end_of_INTERRUPT_Initialize                             text41        1497E
 __end_of_INTERRUPT_InterruptManager                       intcode       000AE
-__end_of_LEAVECRITICAL                                    text33        148D8
-__end_of_OSCILLATOR_Initialize                            text40        1491E
-__end_of_PIN_MANAGER_Initialize                           text39        147EE
-__end_of_SPI2_Initialize                                  text38        14916
-__end_of_SPI2_Open                                        text57        13C16
-__end_of_SYSTEM_Initialize                                text35        14906
-__end_of_SpiTransfer                                      text68        13AA8
-__end_of_TMR0_CallBack                                    text71        14790
-__end_of_TMR0_DefaultInterruptHandler                     text72        14930
-__end_of_TMR0_ISR                                         text70        147C0
-__end_of_TMR0_Initialize                                  text36        14722
-__end_of_TMR0_SetInterruptHandler                         text37        1488A
-__end_of_XF_decrementAndQueueTimers                       text73        13402
-__end_of_XF_executeOnce                                   text18        14278
-__end_of_XF_init                                          text16        12CE4
-__end_of_XF_noMoreEvent                                   text6         1492A
-__end_of_XF_noMoreTimer                                   text5         14924
-__end_of_XF_popEvent                                      text31        1391A
-__end_of_XF_post                                          text2         1384E
-__end_of_XF_pushEvent                                     text3         12B90
-__end_of_XF_scheduleTimer                                 text4         135DA
-__end_of_XF_unscheduleTimer                               text74        145BE
-__end_of___awmod                                          text32        12E2E
-__end_of__initialization                                  cinit         146A6
+__end_of_LEAVECRITICAL                                    text33        14928
+__end_of_OSCILLATOR_Initialize                            text40        1496E
+__end_of_PIN_MANAGER_Initialize                           text39        1483E
+__end_of_SPI2_Initialize                                  text38        14966
+__end_of_SPI2_Open                                        text57        13C66
+__end_of_SYSTEM_Initialize                                text35        14956
+__end_of_SpiTransfer                                      text68        13AF8
+__end_of_TMR0_CallBack                                    text71        147E0
+__end_of_TMR0_DefaultInterruptHandler                     text72        14980
+__end_of_TMR0_ISR                                         text70        14810
+__end_of_TMR0_Initialize                                  text36        14772
+__end_of_TMR0_SetInterruptHandler                         text37        148DA
+__end_of_XF_decrementAndQueueTimers                       text73        13452
+__end_of_XF_executeOnce                                   text18        142C8
+__end_of_XF_init                                          text16        12D34
+__end_of_XF_noMoreEvent                                   text6         1497A
+__end_of_XF_noMoreTimer                                   text5         14974
+__end_of_XF_popEvent                                      text31        1396A
+__end_of_XF_post                                          text2         1389E
+__end_of_XF_pushEvent                                     text3         12BE0
+__end_of_XF_scheduleTimer                                 text4         1362A
+__end_of_XF_unscheduleTimer                               text74        1460E
+__end_of___awmod                                          text32        12E7E
+__end_of__initialization                                  cinit         146F6
 __end_of_canControlResetValues                            mediumconst   0FFDD
 __end_of_canFifoResetValues                               mediumconst   0FFE9
-__end_of_lightContol_BackLight                            text23        13D7E
-__end_of_lightContol_FrontLight                           text22        13E2C
-__end_of_lightControl_Process                             text19        1270E
-__end_of_main                                             text0         13782
-__end_of_motorControl                                     text21        13CCA
-__end_of_motorControl_Process                             text20        123FC
+__end_of_lightContol_BackLight                            text23        13DCE
+__end_of_lightContol_FrontLight                           text22        13E7C
+__end_of_lightControl_Process                             text19        128DE
+__end_of_main                                             text0         137D2
+__end_of_motorControl                                     text21        13D1A
+__end_of_motorControl_Process                             text20        125CC
 __end_of_spi2_configuration                               mediumconst   0FFED
-__end_of_updateCarState                                   text1         12A10
-__initialization                                          cinit         14662
+__end_of_updateCarState                                   text1         12420
+__initialization                                          cinit         146B2
 __mediumconst                                             mediumconst   0FF8C
 __pbssBANK0                                               bssBANK0      00060
 __pbssBANK1                                               bssBANK1      00100
 __pbssBANK2                                               bssBANK2      00200
 __pbssBIGRAM                                              bssBIGRAM     002C8
 __pbssCOMRAM                                              bssCOMRAM     00021
-__pcinit                                                  cinit         14662
+__pcinit                                                  cinit         146B2
 __pcstackCOMRAM                                           cstackCOMRAM  00040
 __pintcode                                                intcode       00008
 __pmediumconst                                            mediumconst   0FF8C
 __pnvCOMRAM                                               nvCOMRAM      00050
-__ptext0                                                  text0         136B2
-__ptext1                                                  text1         12890
-__ptext10                                                 text10        148A6
-__ptext11                                                 text11        143DC
+__ptext0                                                  text0         13702
+__ptext1                                                  text1         12250
+__ptext10                                                 text10        148F6
+__ptext11                                                 text11        1442C
 __ptext12                                                 text12        1074C
-__ptext13                                                 text13        142FE
-__ptext14                                                 text14        123FC
-__ptext15                                                 text15        13F84
-__ptext16                                                 text16        12B90
-__ptext17                                                 text17        14614
-__ptext18                                                 text18        141E8
-__ptext19                                                 text19        12588
-__ptext2                                                  text2         13782
-__ptext20                                                 text20        12250
-__ptext21                                                 text21        13C16
-__ptext22                                                 text22        13D7E
-__ptext23                                                 text23        13CCA
-__ptext24                                                 text24        13EDA
+__ptext13                                                 text13        1434E
+__ptext14                                                 text14        125CC
+__ptext15                                                 text15        13FD4
+__ptext16                                                 text16        12BE0
+__ptext17                                                 text17        14664
+__ptext18                                                 text18        14238
+__ptext19                                                 text19        12758
+__ptext2                                                  text2         137D2
+__ptext20                                                 text20        12420
+__ptext21                                                 text21        13C66
+__ptext22                                                 text22        13DCE
+__ptext23                                                 text23        13D1A
+__ptext24                                                 text24        13F2A
 __ptext25                                                 text25        10000
-__ptext26                                                 text26        131EA
-__ptext27                                                 text27        13E2C
+__ptext26                                                 text26        1323A
+__ptext27                                                 text27        13E7C
 __ptext28                                                 text28        114B2
 __ptext29                                                 text29        12072
-__ptext3                                                  text3         12A10
-__ptext30                                                 text30        14028
-__ptext31                                                 text31        1384E
-__ptext32                                                 text32        12CE4
-__ptext33                                                 text33        148C0
-__ptext34                                                 text34        148D8
-__ptext35                                                 text35        148F0
-__ptext36                                                 text36        146E8
-__ptext37                                                 text37        14868
-__ptext38                                                 text38        14906
-__ptext39                                                 text39        147C0
-__ptext4                                                  text4         134F0
-__ptext40                                                 text40        14916
-__ptext41                                                 text41        1492A
-__ptext42                                                 text42        14372
-__ptext43                                                 text43        140C0
+__ptext3                                                  text3         12A60
+__ptext30                                                 text30        14078
+__ptext31                                                 text31        1389E
+__ptext32                                                 text32        12D34
+__ptext33                                                 text33        14910
+__ptext34                                                 text34        14928
+__ptext35                                                 text35        14940
+__ptext36                                                 text36        14738
+__ptext37                                                 text37        148B8
+__ptext38                                                 text38        14956
+__ptext39                                                 text39        14810
+__ptext4                                                  text4         13540
+__ptext40                                                 text40        14966
+__ptext41                                                 text41        1497A
+__ptext42                                                 text42        143C2
+__ptext43                                                 text43        14110
 __ptext44                                                 text44        10E34
 __ptext45                                                 text45        1117E
-__ptext46                                                 text46        14156
+__ptext46                                                 text46        141A6
 __ptext47                                                 text47        11E64
-__ptext48                                                 text48        13402
-__ptext49                                                 text49        12F70
-__ptext5                                                  text5         1491E
-__ptext50                                                 text50        130B0
-__ptext51                                                 text51        1270E
-__ptext52                                                 text52        1481A
-__ptext53                                                 text53        1488A
-__ptext54                                                 text54        14506
-__ptext55                                                 text55        13AA8
-__ptext56                                                 text56        147EE
-__ptext57                                                 text57        13B60
-__ptext58                                                 text58        12E2E
-__ptext59                                                 text59        14278
-__ptext6                                                  text6         14924
-__ptext60                                                 text60        145BE
-__ptext61                                                 text61        144A4
-__ptext62                                                 text62        14440
-__ptext63                                                 text63        1391A
+__ptext48                                                 text48        13452
+__ptext49                                                 text49        12FC0
+__ptext5                                                  text5         1496E
+__ptext50                                                 text50        13100
+__ptext51                                                 text51        128DE
+__ptext52                                                 text52        1486A
+__ptext53                                                 text53        148DA
+__ptext54                                                 text54        14556
+__ptext55                                                 text55        13AF8
+__ptext56                                                 text56        1483E
+__ptext57                                                 text57        13BB0
+__ptext58                                                 text58        12E7E
+__ptext59                                                 text59        142C8
+__ptext6                                                  text6         14974
+__ptext60                                                 text60        1460E
+__ptext61                                                 text61        144F4
+__ptext62                                                 text62        14490
+__ptext63                                                 text63        1396A
 __ptext64                                                 text64        119BA
 __ptext65                                                 text65        1173A
 __ptext66                                                 text66        11C18
-__ptext67                                                 text67        135DA
-__ptext68                                                 text68        139E4
-__ptext7                                                  text7         14722
-__ptext70                                                 text70        14790
-__ptext71                                                 text71        1475A
-__ptext72                                                 text72        1492E
-__ptext73                                                 text73        13304
-__ptext74                                                 text74        14566
-__ptext8                                                  text8         14842
-__ptext9                                                  text9         146AC
+__ptext67                                                 text67        1362A
+__ptext68                                                 text68        13A34
+__ptext7                                                  text7         14772
+__ptext70                                                 text70        147E0
+__ptext71                                                 text71        147AA
+__ptext72                                                 text72        1497E
+__ptext73                                                 text73        13354
+__ptext74                                                 text74        145B6
+__ptext8                                                  text8         14892
+__ptext9                                                  text9         146FC
 __ramtop                                                  ramtop        01000
 __smallconst                                              smallconst    00000
 _canControlResetValues                                    mediumconst   0FF8D
 _canFifoResetValues                                       mediumconst   0FFDD
 _carState                                                 bssBANK0      00060
 _dummy                                                    bssCOMRAM     00031
-_lightContol_BackLight                                    text23        13CCA
-_lightContol_FrontLight                                   text22        13D7E
-_lightControl_Process                                     text19        12588
-_main                                                     text0         136B2
-_motorControl                                             text21        13C16
-_motorControl_Process                                     text20        12250
+_lightContol_BackLight                                    text23        13D1A
+_lightContol_FrontLight                                   text22        13DCE
+_lightControl_Process                                     text19        12758
+_main                                                     text0         13702
+_motorControl                                             text21        13C66
+_motorControl_Process                                     text20        12420
 _spi2_configuration                                       mediumconst   0FFE9
 _spiReceiveBuffer                                         bssBANK2      00200
 _spiTransmitBuffer                                        bssBANK1      00100
 _theXF                                                    bssBIGRAM     002C8
 _timer0ReloadVal                                          bssCOMRAM     00037
-_updateCarState                                           text1         12890
+_updateCarState                                           text1         12250
 btemp                                                     temp          00001
-end_of_initialization                                     cinit         146A6
+end_of_initialization                                     cinit         146F6
 intlevel0                                                 text          00000
 intlevel1                                                 text          00000
 intlevel2                                                 text          00000
@@ -986,7 +986,7 @@ motorControl_Process@state                                bssCOMRAM     0003E
 stackhi                                                   (abs)         00E7F
 stacklo                                                   (abs)         003E2
 start                                                     init          000AE
-start_initialization                                      cinit         14662
+start_initialization                                      cinit         146B2
 ttemp0                                                    temp          00001
 ttemp1                                                    temp          00004
 ttemp2                                                    temp          00007
@@ -1007,76 +1007,76 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 xf/event.c
-		_Event_init    		CODE           	14614	0000	78
-		_Event_setDelay		CODE           	14722	0000	56
-		_Event_setPE   		CODE           	146AC	0000	60
-		_Event_setId   		CODE           	148A6	0000	26
-		_Event_getDelay		CODE           	14842	0000	38
+		_Event_init    		CODE           	14664	0000	78
+		_Event_setDelay		CODE           	14772	0000	56
+		_Event_setPE   		CODE           	146FC	0000	60
+		_Event_setId   		CODE           	148F6	0000	26
+		_Event_getDelay		CODE           	14892	0000	38
 
 xf/event.c estimated size: 258
 
 mcc_generated_files/interrupt_manager.c
-		_INTERRUPT_Initialize		CODE           	1492A	0000	4
+		_INTERRUPT_Initialize		CODE           	1497A	0000	4
 		_INTERRUPT_InterruptManager		CODE           	0008	0000	166
 
 mcc_generated_files/interrupt_manager.c estimated size: 170
 
 mcc_generated_files/tmr0.c
-		_TMR0_SetInterruptHandler		CODE           	14868	0000	34
-		_TMR0_DefaultInterruptHandler		CODE           	1492E	0000	2
-		_TMR0_CallBack 		CODE           	1475A	0000	54
-		_TMR0_ISR      		CODE           	14790	0000	48
-		_TMR0_Initialize		CODE           	146E8	0000	58
+		_TMR0_SetInterruptHandler		CODE           	148B8	0000	34
+		_TMR0_DefaultInterruptHandler		CODE           	1497E	0000	2
+		_TMR0_CallBack 		CODE           	147AA	0000	54
+		_TMR0_ISR      		CODE           	147E0	0000	48
+		_TMR0_Initialize		CODE           	14738	0000	58
 
 mcc_generated_files/tmr0.c estimated size: 196
 
 mcc_generated_files/pin_manager.c
-		_PIN_MANAGER_Initialize		CODE           	147C0	0000	46
+		_PIN_MANAGER_Initialize		CODE           	14810	0000	46
 
 mcc_generated_files/pin_manager.c estimated size: 46
 
 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\awmod.c
-		___awmod       		CODE           	12CE4	0000	330
+		___awmod       		CODE           	12D34	0000	330
 
 C:\Program Files\Microchip\xc8\v2.50\pic\sources\c99\common\awmod.c estimated size: 330
 
 can/can.c
 		_DRV_CANFDSPI_TransmitChannelLoad		CODE           	10000	0000	1868
-		_DRV_CANFDSPI_ReadByte		CODE           	144A4	0000	98
-		_DRV_CANFDSPI_TimeStampEnable		CODE           	14506	0000	96
-		_DRV_CANFDSPI_FilterToFifoLink		CODE           	140C0	0000	150
-		_DRV_CANFDSPI_TransmitChannelEventGet		CODE           	14028	0000	152
-		_DRV_CANFDSPI_WriteByteArray		CODE           	131EA	0000	282
-		_DRV_CANFDSPI_TimeStampPrescalerSet		CODE           	1488A	0000	28
-		_CanSetFilter  		CODE           	14372	0000	106
-		_DRV_CANFDSPI_ReceiveChannelEventGet		CODE           	13F84	0000	164
+		_DRV_CANFDSPI_ReadByte		CODE           	144F4	0000	98
+		_DRV_CANFDSPI_TimeStampEnable		CODE           	14556	0000	96
+		_DRV_CANFDSPI_FilterToFifoLink		CODE           	14110	0000	150
+		_DRV_CANFDSPI_TransmitChannelEventGet		CODE           	14078	0000	152
+		_DRV_CANFDSPI_WriteByteArray		CODE           	1323A	0000	282
+		_DRV_CANFDSPI_TimeStampPrescalerSet		CODE           	148DA	0000	28
+		_CanSetFilter  		CODE           	143C2	0000	106
+		_DRV_CANFDSPI_ReceiveChannelEventGet		CODE           	13FD4	0000	164
 		_DRV_CANFDSPI_Configure		CODE           	1173A	0000	640
 		_DRV_CANFDSPI_DlcToDataBytes		CODE           	12072	0000	478
-		_DRV_CANFDSPI_ReceiveChannelUpdate		CODE           	142FE	0000	116
-		_DRV_CANFDSPI_TransmitChannelConfigureObjectReset		CODE           	130B0	0000	314
-		_DRV_CANFDSPI_WriteByte		CODE           	145BE	0000	86
-		_DRV_CANFDSPI_OperationModeSelect		CODE           	14278	0000	134
-		_DRV_CANFDSPI_TransmitChannelUpdate		CODE           	13E2C	0000	174
-		_DRV_CANFDSPI_WriteHalfWord		CODE           	1391A	0000	202
-		_DRV_CANFDSPI_ReceiveChannelConfigure		CODE           	12E2E	0000	322
+		_DRV_CANFDSPI_ReceiveChannelUpdate		CODE           	1434E	0000	116
+		_DRV_CANFDSPI_TransmitChannelConfigureObjectReset		CODE           	13100	0000	314
+		_DRV_CANFDSPI_WriteByte		CODE           	1460E	0000	86
+		_DRV_CANFDSPI_OperationModeSelect		CODE           	142C8	0000	134
+		_DRV_CANFDSPI_TransmitChannelUpdate		CODE           	13E7C	0000	174
+		_DRV_CANFDSPI_WriteHalfWord		CODE           	1396A	0000	202
+		_DRV_CANFDSPI_ReceiveChannelConfigure		CODE           	12E7E	0000	322
 		_DRV_CANFDSPI_ReceiveMessageGet		CODE           	1074C	0000	1768
 		_DRV_CANFDSPI_ReadWordArray		CODE           	114B2	0000	648
 		_DRV_CANFDSPI_BitTimeConfigureNominal40MHz		CODE           	11C18	0000	588
 		_DRV_CANFDSPI_FilterObjectConfigure		CODE           	10E34	0000	842
-		_DRV_CANFDSPI_FilterDisable		CODE           	14156	0000	146
-		_CanReceive    		CODE           	143DC	0000	100
-		_DRV_CANFDSPI_TransmitChannelConfigure		CODE           	1270E	0000	386
-		_DRV_CANFDSPI_TefConfigure		CODE           	13AA8	0000	184
-		_DRV_CANFDSPI_TimeStampSet		CODE           	1481A	0000	40
-		_DRV_CANFDSPI_Reset		CODE           	147EE	0000	44
+		_DRV_CANFDSPI_FilterDisable		CODE           	141A6	0000	146
+		_CanReceive    		CODE           	1442C	0000	100
+		_DRV_CANFDSPI_TransmitChannelConfigure		CODE           	128DE	0000	386
+		_DRV_CANFDSPI_TefConfigure		CODE           	13AF8	0000	184
+		_DRV_CANFDSPI_TimeStampSet		CODE           	1486A	0000	40
+		_DRV_CANFDSPI_Reset		CODE           	1483E	0000	44
 		_CanInit       		CODE           	11E64	0000	526
-		_CanSend       		CODE           	13EDA	0000	170
-		_DRV_CANFDSPI_TransmitQueueConfigureObjectReset		CODE           	13402	0000	238
-		_DRV_CANFDSPI_WriteWord		CODE           	135DA	0000	216
-		_SpiTransfer   		CODE           	139E4	0000	196
-		_DRV_CANFDSPI_ReadByteArray		CODE           	123FC	0000	396
-		_DRV_CANFDSPI_TransmitQueueConfigure		CODE           	12F70	0000	320
-		_DRV_CANFDSPI_ModuleEventEnable		CODE           	14440	0000	100
+		_CanSend       		CODE           	13F2A	0000	170
+		_DRV_CANFDSPI_TransmitQueueConfigureObjectReset		CODE           	13452	0000	238
+		_DRV_CANFDSPI_WriteWord		CODE           	1362A	0000	216
+		_SpiTransfer   		CODE           	13A34	0000	196
+		_DRV_CANFDSPI_ReadByteArray		CODE           	125CC	0000	396
+		_DRV_CANFDSPI_TransmitQueueConfigure		CODE           	12FC0	0000	320
+		_DRV_CANFDSPI_ModuleEventEnable		CODE           	14490	0000	100
 		_DRV_CANFDSPI_ConfigureObjectReset		CODE           	119BA	0000	606
 		_DRV_CANFDSPI_FilterMaskConfigure		CODE           	1117E	0000	820
 
@@ -1085,51 +1085,51 @@ can/can.c estimated size: 13744
 shared
 		_canFifoResetValues		MEDIUMCONST    	FFDD	0000	12
 		_canControlResetValues		MEDIUMCONST    	FF8D	0000	80
-		__initialization		CODE           	14662	0000	68
+		__initialization		CODE           	146B2	0000	68
 		_spi2_configuration		MEDIUMCONST    	FFE9	0000	4
 
 shared estimated size: 164
 
 mcc_generated_files/mcc.c
-		_OSCILLATOR_Initialize		CODE           	14916	0000	8
-		_SYSTEM_Initialize		CODE           	148F0	0000	22
+		_OSCILLATOR_Initialize		CODE           	14966	0000	8
+		_SYSTEM_Initialize		CODE           	14940	0000	22
 
 mcc_generated_files/mcc.c estimated size: 30
 
 xf/xf.c
-		_XF_executeOnce		CODE           	141E8	0000	144
-		_XF_noMoreTimer		CODE           	1491E	0000	6
-		_XF_noMoreEvent		CODE           	14924	0000	6
-		_XF_popEvent   		CODE           	1384E	0000	204
-		_XF_init       		CODE           	12B90	0000	340
-		_XF_pushEvent  		CODE           	12A10	0000	384
-		_XF_post       		CODE           	13782	0000	204
-		_ENTERCRITICAL 		CODE           	148D8	0000	24
-		_XF_decrementAndQueueTimers		CODE           	13304	0000	254
-		_XF_unscheduleTimer		CODE           	14566	0000	88
-		_XF_scheduleTimer		CODE           	134F0	0000	234
-		_LEAVECRITICAL 		CODE           	148C0	0000	24
+		_XF_executeOnce		CODE           	14238	0000	144
+		_XF_noMoreTimer		CODE           	1496E	0000	6
+		_XF_noMoreEvent		CODE           	14974	0000	6
+		_XF_popEvent   		CODE           	1389E	0000	204
+		_XF_init       		CODE           	12BE0	0000	340
+		_XF_pushEvent  		CODE           	12A60	0000	384
+		_XF_post       		CODE           	137D2	0000	204
+		_ENTERCRITICAL 		CODE           	14928	0000	24
+		_XF_decrementAndQueueTimers		CODE           	13354	0000	254
+		_XF_unscheduleTimer		CODE           	145B6	0000	88
+		_XF_scheduleTimer		CODE           	13540	0000	234
+		_LEAVECRITICAL 		CODE           	14910	0000	24
 
 xf/xf.c estimated size: 1912
 
 mcc_generated_files/spi2.c
-		_SPI2_Open     		CODE           	13B60	0000	182
-		_SPI2_Initialize		CODE           	14906	0000	16
+		_SPI2_Open     		CODE           	13BB0	0000	182
+		_SPI2_Initialize		CODE           	14956	0000	16
 
 mcc_generated_files/spi2.c estimated size: 198
 
 main.c
-		_main          		CODE           	136B2	0000	208
+		_main          		CODE           	13702	0000	208
 
 main.c estimated size: 208
 
 carFunctions.c
-		_motorControl  		CODE           	13C16	0000	180
-		_motorControl_Process		CODE           	12250	0000	428
-		_lightContol_FrontLight		CODE           	13D7E	0000	174
-		_lightControl_Process		CODE           	12588	0000	390
-		_updateCarState		CODE           	12890	0000	384
-		_lightContol_BackLight		CODE           	13CCA	0000	180
+		_motorControl  		CODE           	13C66	0000	180
+		_motorControl_Process		CODE           	12420	0000	428
+		_lightContol_FrontLight		CODE           	13DCE	0000	174
+		_lightControl_Process		CODE           	12758	0000	390
+		_updateCarState		CODE           	12250	0000	464
+		_lightContol_BackLight		CODE           	13D1A	0000	180
 
-carFunctions.c estimated size: 1736
+carFunctions.c estimated size: 1816
 
