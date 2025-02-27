@@ -621,7 +621,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;can/can.c: 3733: int8_t DRV_CANFDSPI_GpioClockOutputConfigure(CANFDSPI_MODULE_ID index,
 [c E5698 0 1 .. ]
 [n E5698 . GPIO_CLKO_CLOCK GPIO_CLKO_SOF  ]
-"8 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
+"8 C:\Program Files\Microchip\xc8\v2.50\pic\include\builtins.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-J_DFP/1.7.159/xc8\pic\include\proc\pic18f97j60.h

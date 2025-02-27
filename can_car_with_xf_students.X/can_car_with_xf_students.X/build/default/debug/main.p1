@@ -77,7 +77,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "72 ./xf/xf.h
 [; ;./xf/xf.h: 72: void XF_decrementAndQueueTimers();
 [v _XF_decrementAndQueueTimers `(v ~T0 @X0 0 e? ]
-[v F6476 `(v ~T0 @X0 0 tf ]
+[v F6485 `(v ~T0 @X0 0 tf ]
 "64 main.c
 [; ;main.c: 64:     CanInit(CAN_250K_500K,0);
 [c E5607 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 .. ]
@@ -119,24 +119,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14384
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-J_DFP/1.7.159/xc8\pic\include\proc\pic18f97j60.h: 14384: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS530 ~T0 @X0 0 e@4082 ]
-[v F6393 `(a ~T0 @X0 0 tf1`*S575 ]
+[v F6398 `(a ~T0 @X0 0 tf1`*S575 ]
 "12 ./xf/event.h
 [; ;./xf/event.h: 12: {
-[s S575 `uc 1 `*F6393 1 `us 1 ]
+[s S575 `uc 1 `*F6398 1 `us 1 ]
 [n S575 Event_ id processEvent delay ]
-[v F6458 `(a ~T0 @X0 0 tf1`*S575 ]
+[v F6463 `(a ~T0 @X0 0 tf1`*S575 ]
 "84 ./xf/xf.h
 [; ;./xf/xf.h: 84: uint8_t XF_post(processEventT processEvent, uint8_t id, uint16_t delay);
-[v _XF_post `(uc ~T0 @X0 0 ef3`*F6458`uc`us ]
-"48 ./carFunctions.h
-[; ;./carFunctions.h: 48: _Bool lightControl_Process(struct Event_* ev);
+[v _XF_post `(uc ~T0 @X0 0 ef3`*F6463`uc`us ]
+"55 ./carFunctions.h
+[; ;./carFunctions.h: 55: _Bool lightControl_Process(struct Event_* ev);
 [v _lightControl_Process `(a ~T0 @X0 0 ef1`*S575 ]
 "85 main.c
 [; ;main.c: 85:     XF_post(lightControl_Process,E_INIT,0);
-[c E6380 0 1 2 3 4 .. ]
-[n E6380 . E_NULL E_INIT E_CONTACT_OFF E_CONTACT_ON E_HIGH_BRAKE  ]
-"50 ./carFunctions.h
-[; ;./carFunctions.h: 50: void updateCarState(void);
+[c E6380 0 1 2 3 4 5 6 7 8 9 .. ]
+[n E6380 . E_NULL E_INIT E_CONTACT_OFF E_CONTACT_ON E_HIGH_BRAKE E_START_STOP E_TEMPOMAT_ON E_TEMPOMAT_OFF E_ACCELERATION_ON E_ACCELERATION_OFF  ]
+"57 ./carFunctions.h
+[; ;./carFunctions.h: 57: void updateCarState(void);
 [v _updateCarState `(v ~T0 @X0 0 ef ]
 "86 ./xf/xf.h
 [; ;./xf/xf.h: 86: void XF_executeOnce();
@@ -1298,7 +1298,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _XF_init ..  ]
 "62
 [; ;main.c: 62:     TMR0_SetInterruptHandler(XF_decrementAndQueueTimers);
-[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6476 ]
+[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6485 ]
 "64
 [; ;main.c: 64:     CanInit(CAN_250K_500K,0);
 [e ( _CanInit (2 , . `E5607 8 -> -> 0 `i `a ]

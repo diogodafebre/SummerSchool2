@@ -40,7 +40,9 @@ typedef enum
     E_HIGH_BRAKE,
     E_START_STOP,
     E_TEMPOMAT_ON,
-    E_TEMPOMAT_OFF
+    E_TEMPOMAT_OFF,
+    E_ACCELERATION_ON,
+    E_ACCELERATION_OFF
     // TODO complete code
             
 }Event_id;
@@ -54,7 +56,7 @@ bool lightControl_Process(struct Event_* ev);
 
 void updateCarState(void);
 
-void motorControl(bool state);
+void motorControl(uint8_t percent);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 

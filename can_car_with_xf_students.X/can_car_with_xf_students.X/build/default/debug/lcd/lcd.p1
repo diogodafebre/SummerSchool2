@@ -33,7 +33,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-J_DFP/1.7.159/xc8\pic\include\proc\pic18f97j60.h: 8718: extern volatile unsigned char TRISJ __attribute__((address(0xF9A)));
 [v _TRISJ `Vuc ~T0 @X0 0 e@3994 ]
 [v F205 `(v ~T0 @X0 1 tf1`ul ]
-"20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
+"20 C:\Program Files\Microchip\xc8\v2.50\pic\include\builtins.h
 [v __delay `JF205 ~T0 @X0 0 e ]
 [p i __delay ]
 "15 lcd/lcd.c
@@ -45,8 +45,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5785 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-J_DFP/1.7.159/xc8\pic\include\proc\pic18f97j60.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-J_DFP/1.7.159/xc8\pic\include\proc\pic18f97j60.h: 5785: extern volatile unsigned char PORTJ __attribute__((address(0xF88)));
 [v _PORTJ `Vuc ~T0 @X0 0 e@3976 ]
-"117 C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\stdio.h
-[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\stdio.h: 117: int printf(const char *restrict, ...);
+"117 C:\Program Files\Microchip\xc8\v2.50\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.50\pic\include\c99\stdio.h: 117: int printf(const char *restrict, ...);
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "14 lcd/lcd.c
 [; ;lcd/lcd.c: 14: void putch(char);

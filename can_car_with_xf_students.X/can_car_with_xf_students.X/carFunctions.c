@@ -20,16 +20,16 @@ extern CarState carState;
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-void motorControl(uint8_t rpm){
-    static uint8_t lastRpm=0; 
+void motorControl(uint8_t percent){
+    static uint8_t lastPercent=0; 
     CAN_TX_MSGOBJ txMsg={0};
     uint8_t txdata[8];
-        if(lastRpm!= rpm) { 
-            lastRpm = rpm;
+        if(lastPercent!= percent) { 
+            lastPercent = percent;
 
             txMsg.bF.id.ID = ID_PWR_MOTOR;
             txMsg.bF.ctrl.DLC = CAN_DLC_1;
-            txdata[0] = rpm;
+            txdata[0] = percent;
         CanSend(&txMsg,txdata); 
     } 
 }
@@ -184,9 +184,7 @@ bool lightControl_Process(Event* ev)
                 state = OFF;
 
             }
-            
-               
-    // TODO complete code
+
         default:
             break;
     }
@@ -208,9 +206,14 @@ bool lightControl_Process(Event* ev)
             lightContol_BackLight(50);
             break;    
         case BRAKE:
-            lightContol_BackLight(100);
+            if (E_HIGH_BRAKE > 6) {
+              lightContol_BackLight(100);  
+            }else {
+              lightContol_BackLight(0);
+            }
+            
             break;
-    // TODO complete code
+
         default:
             break;
     }    
@@ -220,37 +223,53 @@ bool lightControl_Process(Event* ev)
 void updateCarState(void) 
 {
     // Lecture en cas de message
-    CAN_RX_MSGOBJ rxObj ;
+    CAN_RX_MSGOBJ rxObj;
     uint8_t rxdata[8];
 
-    if(CanReceive(&rxObj,rxdata) == 0) {
-        
-        switch((rxObj.bF.id.ID & 0x3F0)){
+    if (CanReceive(&rxObj, rxdata) == 0) 
+    {
+        switch (rxObj.bF.id.ID & 0x3F0)
+        {
             // Contact
             case ID_CONTACT_KEY:
-                    carState.contactKey = rxdata[0];
-                if(rxdata[0]==0){
-                    XF_post(lightControl_Process,E_CONTACT_OFF,0);
-                    XF_post(motorControl_Process,E_CONTACT_OFF,0);
-                }else{
-                    XF_post(lightControl_Process,E_CONTACT_ON,0);
-                    XF_post(motorControl_Process,E_CONTACT_OFF,0);
+                carState.contactKey = rxdata[0];
+
+                if (rxdata[0] == 0) 
+                {
+                    XF_post(lightControl_Process, E_CONTACT_OFF, 0);
+                    XF_post(motorControl_Process, E_CONTACT_OFF, 0);
+                } 
+                else 
+                {
+                    XF_post(lightControl_Process, E_CONTACT_ON, 0);
+                    XF_post(motorControl_Process, E_CONTACT_ON, 0);
                 }
+                break; 
+
             // Freinage
             case ID_BRAKE_PEDAL:
-                if(rxdata[0]>=0){
-                    XF_post(lightControl_Process,E_HIGH_BRAKE,0);
-                }else if(rxdata[0]>=0){
-                    XF_post(lightControl_Process,E_HIGH_BRAKE,0);
+                carState.brakePedal = rxdata[0];
+
+                if (rxdata[0] > 6) 
+                {
+                    XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
                 }
-            case ID_BRAKE_PEDAL:
-                if(rxdata[0]>=0){
-                    XF_post(lightControl_Process,E_HIGH_BRAKE,0);
+                break; 
+
+               
+            // Accélération
+            case ID_ACCEL_PEDAL:
+                if (rxdata[0] > 6) 
+                {
+                    XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
                 }
+                break; 
+
             default:
+                // Aucun cas reconnu
                 break;
         }
     }
-    
 }
+
 
