@@ -55,18 +55,28 @@ CarState carState;
  */
 void main(void)
 {
+    CAN_FILTEROBJ_ID filterObj;
+    CAN_MASKOBJ_ID maskObj;
 
-    // Initialize the device
+    // Initialisation des parame?tres
+    filterObj.ID = 1;     // ID que nous souhaitons filtrer 
+    filterObj.SID11 = 0;  // Nous utilisons que des ID standards 
+    filterObj.EXIDE = 0;  // 0 ? Identifiant standard (11 bits)
+
+    maskObj.MID = 0x00F;  // Masque des 4 derniers bit (le CTL -> 0x1)
+    maskObj.MIDE = 1;     // Filtrage sur ID standard
+    maskObj.MSID11 = 0;   // Pas utilise?
     SYSTEM_Initialize();
+
+    //Appel de la fonction CanSetFilter dans le main
+    CanInit(CAN_250K_500K, false);
+    CanSetFilter(CAN_FILTER0, &filterObj, &maskObj);
+    // Initialize the device
     XF_init();
+
     TMR0_SetInterruptHandler(XF_decrementAndQueueTimers);
     // TODO complete code
-    CanInit(CAN_250K_500K,false);
-    CAN_FILTEROBJ_ID fObj;
-    fObj.ID = 0x001;
-    CAN_MASKOBJ_ID mObj;
-    mObj.MID = 0x00F;
-    CanSetFilter(CAN_FILTER0,&fObj,&mObj);
+
     // If using interrupts in PIC18 High/Low Priority Mode you need to enable the Global High and Low Interrupts
     // If using interrupts in PIC Mid-Range Compatibility Mode you need to enable the Global and Peripheral Interrupts
     // Use the following macros to:

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <executable name="dist/default/production\can_car_with_xf_students.X.production.hex">
+    <memory name="program">
+      <units>bytes</units>
+      <length>131064</length>
+      <used>19172</used>
+      <free>111892</free>
+    </memory>
+    <memory name="data">
+      <units>bytes</units>
+      <length>3808</length>
+      <used>823</used>
+      <free>2985</free>
+    </memory>
+  </executable>
+</project>

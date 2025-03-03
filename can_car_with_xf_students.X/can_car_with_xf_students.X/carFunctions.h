@@ -42,23 +42,23 @@ typedef enum
     E_TEMPOMAT_ON,
     E_TEMPOMAT_OFF,
     E_ACCELERATION_ON,
-    E_ACCELERATION_OFF
-    // TODO complete code
+    E_ACCELERATION_OFF,
+    E_HIGH_BRAKE_RELASED
             
 }Event_id;
 
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include "xf/xf.h"
-
-bool motorControl_Process(Event* ev);
 bool lightControl_Process(struct Event_* ev);
+bool motorControl_Process(Event* ev);
 
 void updateCarState(void);
 
-void motorControl(uint8_t percent);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
+
+void motorControl(uint8_t percent);
 
 #endif	/* XC_CARFUNCTIONS_H */
 
