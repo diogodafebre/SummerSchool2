@@ -88,6 +88,7 @@
              }
              break;
              
+             
  
          case CRUISE:
              if(ev->id == E_CONTACT_OFF)
@@ -102,13 +103,18 @@
      // Check state change
      if(oldState == state)    
     {
+         if (ev->id == E_ACCELERATION_ON){
+             if(carState.rpm <8000){
+                motorControl(MAX(10,carState.accelPedal-3),0); 
+             }
+         }
         return 0;            // no change, no entry action
     }
    
      
-    oldState = state; 
-    
-    // State machine actions
+     
+    if (oldState!= state){
+        // State machine actions
     switch(state)            
      {
          
@@ -121,7 +127,10 @@
             
          default:
              break;
-     }    
+     }        
+    }
+
+     oldState = state;
      return 0;
  
  }
@@ -244,16 +253,8 @@
                 
              // Accélération
              case ID_ACCEL_PEDAL:
-                 carState.accelPedal = rxdata[0];
-                 if (rxdata[0] > 10) 
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                 }else if (rxdata[0] < 10) 
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
-                 }
-                 break; 
- 
+                 carState.accelPedal = rxdata[0] ;
+                 XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
              default:
                  // Aucun cas reconnu
                  break;

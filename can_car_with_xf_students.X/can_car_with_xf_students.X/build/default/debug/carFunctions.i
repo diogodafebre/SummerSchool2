@@ -11002,6 +11002,7 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
              break;
 
 
+
          case CRUISE:
              if(ev->id == E_CONTACT_OFF)
              {
@@ -11015,12 +11016,17 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
      if(oldState == state)
     {
+         if (ev->id == E_ACCELERATION_ON){
+             if(carState.rpm <8000){
+                motorControl((((10)>(carState.accelPedal-3))?(10):(carState.accelPedal-3)),0);
+             }
+         }
         return 0;
     }
 
 
-    oldState = state;
 
+    if (oldState!= state){
 
     switch(state)
      {
@@ -11035,6 +11041,9 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
          default:
              break;
      }
+    }
+
+     oldState = state;
      return 0;
 
  }
@@ -11157,16 +11166,8 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
 
              case (0x14<<4):
-                 carState.accelPedal = rxdata[0];
-                 if (rxdata[0] > 10)
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                 }else if (rxdata[0] < 10)
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
-                 }
-                 break;
-
+                 carState.accelPedal = rxdata[0] ;
+                 XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
              default:
 
                  break;
