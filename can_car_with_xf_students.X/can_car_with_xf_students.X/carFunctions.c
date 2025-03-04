@@ -19,29 +19,7 @@
  
  #define MIN(a,b) (((a)<(b))?(a):(b))
  #define MAX(a,b) (((a)>(b))?(a):(b))
- 
- void gearSelect(uint8_t gearEngaged){
-     typedef enum
-     {
-         PARK,
-         NEUTRAL,
-         DRIVE,
-         REVERSE,     
-        
-     }GearState;
-     static uint8_t lastGear = 0;
-     CAN_TX_MSGOBJ txMsg={0};
-     uint8_t txdata[8];
-     
-     if(lastGear!= gearEngaged) { 
-             lastGear = gearEngaged;
-             txMsg.bF.id.ID = ID_GEAR_LVL;
-             txMsg.bF.ctrl.DLC = CAN_DLC_1;
-             txdata[0] = gearEngaged;
-             CanSend(&txMsg,txdata); 
-     } 
- }
- 
+
  void motorControl(uint8_t percent,uint8_t starter){
      static uint8_t lastPercent = 0; 
      static uint8_t lastStarter = 0; 
@@ -58,7 +36,6 @@
          CanSend(&txMsg,txdata); 
      } 
  }
- 
  void lightContol_FrontLight(uint8_t light)
  {
  
@@ -88,19 +65,12 @@
          CanSend(&txMsg,txdata); 
      } 
  }
- 
  bool motorControl_Process(Event* ev){
      
      typedef enum
      {
-         INIT,
          OFF,
-         STARTING,
-         CRUISE,
-         BRAKE,
-         STANDBY,
-         ACCELERATION,
-         DECELERATION
+         CRUISE
      }MotorState;
      static MotorState state = OFF;
      static MotorState oldState = OFF;
@@ -113,51 +83,18 @@
          case OFF:
              if(ev->id == E_CONTACT_ON)
              {
-                 state = STARTING;
- 
-             }
-             break;
-             
-         case STARTING:
-                 state = STANDBY;
-             break;
- 
-         case STANDBY:
-             if(ev->id == E_CONTACT_OFF)
-             {
-                 state = OFF;
-             }else if(ev->id == E_ACCELERATION_ON)
-             {
-                 state = ACCELERATION;
-             }
-         case ACCELERATION:
-             if(ev->id == E_ACCELERATION_OFF)
-             {
-                 state = DECELERATION;
-             }else if(ev->id == E_HIGH_BRAKE)
-             {
-                 state = DECELERATION;
-             }
-             
-             break;
-         case DECELERATION:
-             if (carState.speed == 0){
-                 state = STANDBY;
-             }else if ((carState.speed > 0) & (ev->id !=E_HIGH_BRAKE)){
                  state = CRUISE;
+ 
              }
-             
              break;
              
+ 
          case CRUISE:
              if(ev->id == E_CONTACT_OFF)
              {
                  state = OFF;
-             }else if(ev->id == E_ACCELERATION_OFF)
-             {
-                 state = STANDBY;
              }
-             
+         
          default :
              break;
      }
@@ -167,6 +104,8 @@
     {
         return 0;            // no change, no entry action
     }
+   
+     
     oldState = state; 
     
     // State machine actions
@@ -176,36 +115,16 @@
          case OFF:
              motorControl(0,0);
              break;
-         case STARTING:
-             motorControl(10,1);
-             break;
          case CRUISE:
-             
+             motorControl(10,1);
              break;    
-         case STANDBY:
-             
-            break;
-         case BRAKE:
-             
-             break;
-
-         case ACCELERATION:
-             
             
-             
-             break;
-         case DECELERATION:
-              
-            
-             break;
-             
          default:
              break;
      }    
      return 0;
  
  }
- 
  bool lightControl_Process(Event* ev)
  {
      typedef enum
@@ -282,7 +201,6 @@
      }    
      return 0;
  }
- 
  void updateCarState(void) 
  {
      // Lecture en cas de message
@@ -327,10 +245,10 @@
              // Accélération
              case ID_ACCEL_PEDAL:
                  carState.accelPedal = rxdata[0];
-                 if (rxdata[0] > 6) 
+                 if (rxdata[0] > 10) 
                  {
                      XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                 }else if (rxdata[0] < 6) 
+                 }else if (rxdata[0] < 10) 
                  {
                      XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
                  }

@@ -10869,6 +10869,7 @@ void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
 void motorControl(uint8_t percent,uint8_t starter);
+void handleAcceleration(void);
 
 void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 # 48 "main.c" 2

@@ -10801,7 +10801,7 @@ typedef struct
 # 34 "./carFunctions.h"
 typedef enum
 {
-     E_NULL=0,
+    E_NULL=0,
     E_INIT,
     E_CONTACT_OFF,
     E_CONTACT_ON,
@@ -10810,7 +10810,12 @@ typedef enum
     E_TEMPOMAT_ON,
     E_TEMPOMAT_OFF,
     E_ACCELERATION_ON,
-    E_ACCELERATION_OFF
+    E_ACCELERATION_OFF,
+    E_HIGH_BRAKE_RELASED,
+    E_GEAR_PARK,
+    E_GEAR_DRIVE,
+    E_GEAR_REVERSE,
+    E_GEAR_NEUTRAL
 
 }Event_id;
 
@@ -10900,131 +10905,104 @@ void XF_decrementAndQueueTimers();
 uint8_t XF_post(processEventT processEvent, uint8_t id, uint16_t delay);
 
 void XF_executeOnce();
-# 51 "./carFunctions.h" 2
+# 56 "./carFunctions.h" 2
 
+
+
+_Bool gearSelect_Proceess(Event* ev);
 _Bool lightControl_Process(struct Event_* ev);
 _Bool motorControl_Process(Event* ev);
 
 void updateCarState(void);
-
+void gearSelect(uint8_t gearEngaged);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
-void motorControl(uint8_t percent);
+void motorControl(uint8_t percent,uint8_t starter);
+void handleAcceleration(void);
+
+void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 # 15 "carFunctions.c" 2
 
 # 1 "./xf/event.h" 1
 # 16 "carFunctions.c" 2
 
 
-extern CarState carState;
+ extern CarState carState;
 
 
 
 
 
-void motorControl(uint8_t percent){
-    static uint8_t lastPercent=0;
+ void handleAccelerationCAN(void) {
+    static uint8_t lastPower = 10;
+    uint8_t requestedPower = carState.accelPedal;
+
+    if (requestedPower > 10) {
+
+        lastPower = (((lastPower + 2)<(requestedPower))?(lastPower + 2):(requestedPower));
+    } else {
+
+        lastPower = (((lastPower - 2)>(10))?(lastPower - 2):(10));
+    }
+
+
+    CAN_TX_MSGOBJ txMsg = {0};
+    uint8_t txdata[8];
+
+    txMsg.bF.id.ID = (0x112);
+    txMsg.bF.ctrl.DLC = CAN_DLC_2;
+    txdata[0] = lastPower;
+    txdata[1] = 1;
+
+    CanSend(&txMsg, txdata);
+}
+
+ void gearSelect(uint8_t gearEngaged){
+     typedef enum
+     {
+         PARK,
+         NEUTRAL,
+         DRIVE,
+         REVERSE,
+
+     }GearState;
+     static uint8_t lastGear = 0;
+     CAN_TX_MSGOBJ txMsg={0};
+     uint8_t txdata[8];
+
+     if(lastGear!= gearEngaged) {
+             lastGear = gearEngaged;
+             txMsg.bF.id.ID = (0x12);
+             txMsg.bF.ctrl.DLC = CAN_DLC_1;
+             txdata[0] = gearEngaged;
+             CanSend(&txMsg,txdata);
+     }
+ }
+
+ void motorControl(uint8_t percent,uint8_t starter){
+     static uint8_t lastPercent = 0;
+     static uint8_t lastStarter = 0;
+     CAN_TX_MSGOBJ txMsg={0};
+     uint8_t txdata[8];
+         if((lastPercent != percent)||(lastStarter != starter)) {
+             lastPercent = percent;
+             lastStarter = starter;
+
+             txMsg.bF.id.ID = (0x112);
+             txMsg.bF.ctrl.DLC = CAN_DLC_2;
+             txdata[0] = percent;
+             txdata[1] = starter;
+         CanSend(&txMsg,txdata);
+     }
+ }
+
+ void lightContol_FrontLight(uint8_t light)
+ {
+
+    static uint8_t lastLight=0;
     CAN_TX_MSGOBJ txMsg={0};
     uint8_t txdata[8];
-        if(lastPercent!= percent) {
-            lastPercent = percent;
-
-            txMsg.bF.id.ID = (0x112);
-            txMsg.bF.ctrl.DLC = CAN_DLC_1;
-            txdata[0] = percent;
-        CanSend(&txMsg,txdata);
-    }
-}
-
-_Bool motorControl_Process(Event* ev){
-
-    typedef enum
-    {
-        INIT,
-        OFF,
-        CRUISE,
-        BRAKE,
-        STANDBY
-    }MotorState;
-    static MotorState state = INIT;
-    static MotorState oldState = INIT;
-
-
-
-    switch(state)
-    {
-        case INIT:
-            if(ev->id == E_INIT){
-                state = OFF;
-            }
-            break;
-        case OFF:
-            if(ev->id == E_CONTACT_ON)
-            {
-                state = STANDBY;
-
-            }
-            break;
-        case CRUISE:
-            if(ev->id == E_CONTACT_OFF)
-            {
-                state = OFF;
-            }else if(ev->id == E_ACCELERATION_OFF)
-            {
-                state = STANDBY;
-            }
-        case STANDBY:
-            if(ev->id == E_CONTACT_OFF)
-            {
-                state = OFF;
-            }else if(ev->id == E_ACCELERATION_ON)
-            {
-                state = CRUISE;
-            }
-        default :
-            break;
-    }
-
-
-    if(oldState == state)
-   {
-       return 0;
-   }
-   oldState = state;
-
-
-   switch(state)
-    {
-        case INIT:
-        break;
-        case OFF:
-            motorControl(0);
-            break;
-        case CRUISE:
-            lightContol_FrontLight(50);
-            lightContol_BackLight(50);
-            break;
-       case STANDBY:
-           motorControl(10);
-           break;
-        case BRAKE:
-
-            break;
-
-        default:
-            break;
-    }
-    return 0;
-
-}
-
-void lightContol_FrontLight(uint8_t light)
-{
-
-static uint8_t lastLight=0;
-CAN_TX_MSGOBJ txMsg={0};
-uint8_t txdata[8];
     if(lastLight!= light) {
         lastLight = light;
 
@@ -11033,146 +11011,266 @@ uint8_t txdata[8];
         txdata[0] = light;
         CanSend(&txMsg,txdata);
     }
-}
-void lightContol_BackLight(uint8_t light)
-{
-    static uint8_t lastLight=0;
-    CAN_TX_MSGOBJ txMsg={0};
-    uint8_t txdata[8];
-    if(lastLight!= light) {
-        lastLight = light;
+ }
+ void lightContol_BackLight(uint8_t light)
+ {
+     static uint8_t lastLight=0;
+     CAN_TX_MSGOBJ txMsg={0};
+     uint8_t txdata[8];
+     if(lastLight!= light) {
+         lastLight = light;
 
-        txMsg.bF.id.ID = (0x119);
-        txMsg.bF.ctrl.DLC = CAN_DLC_1;
-        txdata[0] = light;
-        CanSend(&txMsg,txdata);
-    }
-}
+         txMsg.bF.id.ID = (0x119);
+         txMsg.bF.ctrl.DLC = CAN_DLC_1;
+         txdata[0] = light;
+         CanSend(&txMsg,txdata);
+     }
+ }
 
-_Bool lightControl_Process(Event* ev)
-{
-    typedef enum
+ _Bool motorControl_Process(Event* ev){
+
+     typedef enum
+     {
+         INIT,
+         OFF,
+         STARTING,
+         CRUISE,
+         BRAKE,
+         STANDBY,
+         ACCELERATION,
+         DECELERATION
+     }MotorState;
+     static MotorState state = OFF;
+     static MotorState oldState = OFF;
+
+
+
+     switch(state)
+     {
+
+         case OFF:
+             if(ev->id == E_CONTACT_ON)
+             {
+                 state = STANDBY;
+
+             }
+             break;
+
+
+         case STANDBY:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+             }else if(ev->id == E_ACCELERATION_ON)
+             {
+                 state = ACCELERATION;
+             }
+         case ACCELERATION:
+             if(ev->id == E_ACCELERATION_OFF)
+             {
+                 state = DECELERATION;
+             }else if(ev->id == E_HIGH_BRAKE)
+             {
+                 state = DECELERATION;
+             }
+
+             break;
+         case DECELERATION:
+             if (carState.speed == 0){
+                 state = STANDBY;
+             }else if ((carState.speed > 0) & (ev->id !=E_HIGH_BRAKE)){
+                 state = CRUISE;
+             }
+
+             break;
+
+         case CRUISE:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+             }else if(ev->id == E_ACCELERATION_OFF)
+             {
+                 state = STANDBY;
+             }
+
+         default :
+             break;
+     }
+
+
+     if(oldState == state)
     {
-        INIT,
-        OFF,
-        CRUISE,
-        BRAKE
-    }LightState;
-    static LightState state = INIT;
-    static LightState oldState = INIT;
+        return 0;
+    }
+    oldState = state;
+
+
     switch(state)
+     {
+
+         case OFF:
+             motorControl(0,0);
+             break;
+         case CRUISE:
+
+             break;
+         case STANDBY:
+             motorControl(10,1);
+            break;
+         case BRAKE:
+
+             break;
+
+         case ACCELERATION:
+             handleAccelerationCAN();
+             _delay((unsigned long)((100)*(62500000/4000.0)));
+
+             break;
+         case DECELERATION:
+
+
+             break;
+
+         default:
+             break;
+     }
+     return 0;
+
+ }
+
+ _Bool lightControl_Process(Event* ev)
+ {
+     typedef enum
+     {
+         INIT,
+         OFF,
+         CRUISE,
+         BRAKE,
+
+     }LightState;
+     static LightState state = INIT;
+     static LightState oldState = INIT;
+     switch(state)
+     {
+         case INIT:
+             if(ev->id == E_INIT){
+                 state = OFF;
+             }
+             break;
+         case OFF:
+             if(ev->id == E_CONTACT_ON)
+             {
+                 state = CRUISE;
+
+             }
+             break;
+         case CRUISE:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+
+             }
+             else if (ev->id == E_HIGH_BRAKE)
+             {
+                 state = BRAKE;
+             }
+             break;
+         case BRAKE:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+
+             }else if (ev->id == E_HIGH_BRAKE_RELASED){
+                 state = CRUISE;
+             }
+
+
+         default:
+             break;
+     }
+    if(oldState == state)
     {
-        case INIT:
-            if(ev->id == E_INIT){
-                state = OFF;
-            }
-            break;
-        case OFF:
-            if(ev->id == E_CONTACT_ON)
-            {
-                state = CRUISE;
-
-            }
-            break;
-        case CRUISE:
-            if(ev->id == E_CONTACT_OFF)
-            {
-                state = OFF;
-
-            }
-            else if (ev->id == E_HIGH_BRAKE)
-            {
-                state = BRAKE;
-            }
-            break;
-        case BRAKE:
-            if(ev->id == E_CONTACT_OFF)
-            {
-                state = OFF;
-
-            }
-            if (E_HIGH_BRAKE < 5){
-                state = CRUISE;
-            }
-
-        default:
-            break;
+        return 0;
     }
-   if(oldState == state)
-   {
-       return 0;
-   }
-   oldState = state;
-   switch(state)
-    {
-        case INIT:
-        break;
-        case OFF:
-            lightContol_FrontLight(0);
-            lightContol_BackLight(0);
-            break;
-        case CRUISE:
-            lightContol_FrontLight(50);
-            lightContol_BackLight(50);
-            break;
-        case BRAKE:
-            lightContol_BackLight(100);
-            break;
+    oldState = state;
+    switch(state)
+     {
+         case INIT:
+         break;
+         case OFF:
+             lightContol_FrontLight(0);
+             lightContol_BackLight(0);
+             break;
+         case CRUISE:
+             lightContol_FrontLight(50);
+             lightContol_BackLight(50);
+             break;
+         case BRAKE:
+             lightContol_BackLight(100);
+             break;
 
-        default:
-            break;
-    }
-    return 0;
-}
+         default:
+             break;
+     }
+     return 0;
+ }
 
-void updateCarState(void)
-{
+ void updateCarState(void)
+ {
 
-    CAN_RX_MSGOBJ rxObj;
-    uint8_t rxdata[8];
+     CAN_RX_MSGOBJ rxObj;
+     uint8_t rxdata[8];
 
-    if (CanReceive(&rxObj, rxdata) == 0)
-    {
-        switch (rxObj.bF.id.ID & 0x7F0)
-        {
+     if (CanReceive(&rxObj, rxdata) == 0)
+     {
+         switch (rxObj.bF.id.ID & 0x7F0)
+         {
 
-            case (0x05<<4):
-                carState.contactKey = rxdata[0];
+             case (0x05<<4):
+                 carState.contactKey = rxdata[0];
 
-                if (rxdata[0] == 0)
-                {
-                    XF_post(lightControl_Process, E_CONTACT_OFF, 0);
-                    XF_post(motorControl_Process, E_CONTACT_OFF, 0);
-                }
-                else
-                {
-                    XF_post(lightControl_Process, E_CONTACT_ON, 0);
-                    XF_post(motorControl_Process, E_CONTACT_ON, 0);
-                }
-                break;
+                 if (rxdata[0] == 0)
+                 {
+                     XF_post(lightControl_Process, E_CONTACT_OFF, 0);
+                     XF_post(motorControl_Process, E_CONTACT_OFF, 0);
+                 }
+                 else
+                 {
+                     XF_post(lightControl_Process, E_CONTACT_ON, 0);
+                     XF_post(motorControl_Process, E_CONTACT_ON, 0);
+
+                 }
+                 break;
 
 
-            case (0x04<<4):
-                carState.brakePedal = rxdata[0];
+             case (0x04<<4):
+                 carState.brakePedal = rxdata[0];
 
-                if (rxdata[0] > 6)
-                {
-                    XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
-                }
-                break;
+                 if (rxdata[0] > 6)
+                 {
+                     XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
+                 }else if (rxdata[0] < 6)
+                 {
+                     XF_post(lightControl_Process, E_HIGH_BRAKE_RELASED, 0);
+                 }
+                 break;
 
 
 
-            case (0x14<<4):
-                if (rxdata[0] > 6)
-                {
-                    XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                }
-                break;
+             case (0x14<<4):
+                 carState.accelPedal = rxdata[0];
+                 if (rxdata[0] > 10)
+                 {
+                     XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
+                 }else if (rxdata[0] < 10)
+                 {
+                     XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
+                 }
+                 break;
 
-            default:
+             default:
 
-                break;
-        }
-    }
-}
+                 break;
+         }
+     }
+ }

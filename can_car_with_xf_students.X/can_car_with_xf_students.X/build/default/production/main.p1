@@ -99,7 +99,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "72 ./xf/xf.h
 [; ;./xf/xf.h: 72: void XF_decrementAndQueueTimers();
 [v _XF_decrementAndQueueTimers `(v ~T0 @X0 0 e? ]
-[v F6484 `(v ~T0 @X0 0 tf ]
+[v F6498 `(v ~T0 @X0 0 tf ]
 "14358 C:/Users/diogo/.mchp_packs/Microchip/PIC18F-J_DFP/1.6.157/xc8\pic\include\proc\pic18f97j60.h
 [; ;C:/Users/diogo/.mchp_packs/Microchip/PIC18F-J_DFP/1.6.157/xc8\pic\include\proc\pic18f97j60.h: 14358:     struct {
 [s S531 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -119,24 +119,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14384
 [; ;C:/Users/diogo/.mchp_packs/Microchip/PIC18F-J_DFP/1.6.157/xc8\pic\include\proc\pic18f97j60.h: 14384: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS530 ~T0 @X0 0 e@4082 ]
-[v F6395 `(a ~T0 @X0 0 tf1`*S575 ]
+[v F6400 `(a ~T0 @X0 0 tf1`*S575 ]
 "12 ./xf/event.h
 [; ;./xf/event.h: 12: {
-[s S575 `uc 1 `*F6395 1 `us 1 ]
+[s S575 `uc 1 `*F6400 1 `us 1 ]
 [n S575 Event_ id processEvent delay ]
-[v F6460 `(a ~T0 @X0 0 tf1`*S575 ]
+[v F6465 `(a ~T0 @X0 0 tf1`*S575 ]
 "84 ./xf/xf.h
 [; ;./xf/xf.h: 84: uint8_t XF_post(processEventT processEvent, uint8_t id, uint16_t delay);
-[v _XF_post `(uc ~T0 @X0 0 ef3`*F6460`uc`us ]
-"52 ./carFunctions.h
-[; ;./carFunctions.h: 52: _Bool lightControl_Process(struct Event_* ev);
+[v _XF_post `(uc ~T0 @X0 0 ef3`*F6465`uc`us ]
+"60 ./carFunctions.h
+[; ;./carFunctions.h: 60: _Bool lightControl_Process(struct Event_* ev);
 [v _lightControl_Process `(a ~T0 @X0 0 ef1`*S575 ]
 "95 main.c
 [; ;main.c: 95:     XF_post(lightControl_Process,E_INIT,0);
-[c E6377 0 1 2 3 4 5 6 7 8 9 .. ]
-[n E6377 . E_NULL E_INIT E_CONTACT_OFF E_CONTACT_ON E_HIGH_BRAKE E_START_STOP E_TEMPOMAT_ON E_TEMPOMAT_OFF E_ACCELERATION_ON E_ACCELERATION_OFF  ]
-"55 ./carFunctions.h
-[; ;./carFunctions.h: 55: void updateCarState(void);
+[c E6377 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 .. ]
+[n E6377 . E_NULL E_INIT E_CONTACT_OFF E_CONTACT_ON E_HIGH_BRAKE E_START_STOP E_TEMPOMAT_ON E_TEMPOMAT_OFF E_ACCELERATION_ON E_ACCELERATION_OFF E_HIGH_BRAKE_RELASED E_GEAR_PARK E_GEAR_DRIVE E_GEAR_REVERSE E_GEAR_NEUTRAL  ]
+"63 ./carFunctions.h
+[; ;./carFunctions.h: 63: void updateCarState(void);
 [v _updateCarState `(v ~T0 @X0 0 ef ]
 "86 ./xf/xf.h
 [; ;./xf/xf.h: 86: void XF_executeOnce();
@@ -1328,7 +1328,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _XF_init ..  ]
 "77
 [; ;main.c: 77:     TMR0_SetInterruptHandler(XF_decrementAndQueueTimers);
-[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6484 ]
+[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6498 ]
 "85
 [; ;main.c: 85:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]

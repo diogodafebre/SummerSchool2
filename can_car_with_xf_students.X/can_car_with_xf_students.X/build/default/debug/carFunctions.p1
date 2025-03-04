@@ -60,8 +60,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "716
 [; ;./can/can.h: 716: int8_t DRV_CANFDSPI_TransmitChannelEventAttemptClear(CANFDSPI_MODULE_ID index,
 [v _DRV_CANFDSPI_TransmitChannelEventAttemptClear `(c ~T0 @X0 0 ef2`uc`E5454 ]
-"39 carFunctions.c
-[; ;carFunctions.c: 39:              txMsg.bF.ctrl.DLC = CAN_DLC_1;
+"33 carFunctions.c
+[; ;carFunctions.c: 33:              txMsg.bF.ctrl.DLC = CAN_DLC_2;
 [c E5628 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 .. ]
 [n E5628 . CAN_DLC_0 CAN_DLC_1 CAN_DLC_2 CAN_DLC_3 CAN_DLC_4 CAN_DLC_5 CAN_DLC_6 CAN_DLC_7 CAN_DLC_8 CAN_DLC_12 CAN_DLC_16 CAN_DLC_20 CAN_DLC_24 CAN_DLC_32 CAN_DLC_48 CAN_DLC_64  ]
 "97 ./can/can.h
@@ -72,25 +72,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./xf/event.h: 12: {
 [s S576 `uc 1 `*F6559 1 `us 1 ]
 [n S576 Event_ id processEvent delay ]
-"105 carFunctions.c
-[; ;carFunctions.c: 105:      static MotorState state = OFF;
-[c E6686 0 1 2 3 4 5 6 7 .. ]
-[n E6686 . INIT OFF STARTING CRUISE BRAKE STANDBY ACCELERATION DECELERATION  ]
-"114
-[; ;carFunctions.c: 114:              if(ev->id == E_CONTACT_ON)
+"75 carFunctions.c
+[; ;carFunctions.c: 75:      static MotorState state = OFF;
+[c E6675 0 1 .. ]
+[n E6675 . OFF CRUISE  ]
+"84
+[; ;carFunctions.c: 84:              if(ev->id == E_CONTACT_ON)
 [c E6536 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 .. ]
 [n E6536 . E_NULL E_INIT E_CONTACT_OFF E_CONTACT_ON E_HIGH_BRAKE E_START_STOP E_TEMPOMAT_ON E_TEMPOMAT_OFF E_ACCELERATION_ON E_ACCELERATION_OFF E_HIGH_BRAKE_RELASED E_GEAR_PARK E_GEAR_DRIVE E_GEAR_REVERSE E_GEAR_NEUTRAL  ]
-"68 ./car_msg_id.h
-[; ;./car_msg_id.h: 68: {
-[s S574 `uc 1 `uc 1 `uc 1 `us 1 `uc 1 `uc 1 `us 1 `s 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `uc 1 `uc 1 ]
-[n S574 . tempoOn tempoSpeed gearSel frontSensor extSensorL extSensorR rpm speed statReceived brakePedal accelPedal contactKey steeringWheel brokenMsg badMsg slope race rev secondElapsed ms20Elapsed speedAgregate gearLevel starterNeeded ]
-"18 carFunctions.c
-[; ;carFunctions.c: 18:  extern CarState carState;
-[v _carState `S574 ~T0 @X0 0 e ]
-"219
-[; ;carFunctions.c: 219:      static LightState state = INIT;
-[c E6700 0 1 2 3 .. ]
-[n E6700 . INIT OFF CRUISE BRAKE  ]
+"138
+[; ;carFunctions.c: 138:      static LightState state = INIT;
+[c E6683 0 1 2 3 .. ]
+[n E6683 . INIT OFF CRUISE BRAKE  ]
 "340 ./can/can_defines.h
 [; ;./can/can_defines.h: 340: typedef struct _CAN_RX_MSGOBJ_CTRL {
 [s S548 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 `uc 1 `uc 1 ]
@@ -106,6 +99,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "119 ./can/can.h
 [; ;./can/can.h: 119: int8_t CanReceive(CAN_RX_MSGOBJ * rxObj, uint8_t * rxd);
 [v _CanReceive `(c ~T0 @X0 0 ef2`*S551`*uc ]
+"68 ./car_msg_id.h
+[; ;./car_msg_id.h: 68: {
+[s S574 `uc 1 `uc 1 `uc 1 `us 1 `uc 1 `uc 1 `us 1 `s 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `uc 1 `uc 1 ]
+[n S574 . tempoOn tempoSpeed gearSel frontSensor extSensorL extSensorR rpm speed statReceived brakePedal accelPedal contactKey steeringWheel brokenMsg badMsg slope race rev secondElapsed ms20Elapsed speedAgregate gearLevel starterNeeded ]
+"18 carFunctions.c
+[; ;carFunctions.c: 18:  extern CarState carState;
+[v _carState `S574 ~T0 @X0 0 e ]
 [v F6624 `(a ~T0 @X0 0 tf1`*S576 ]
 "84 ./xf/xf.h
 [; ;./xf/xf.h: 84: uint8_t XF_post(processEventT processEvent, uint8_t id, uint16_t delay);
@@ -1245,98 +1245,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 573 ]
 }
 "23 carFunctions.c
-[; ;carFunctions.c: 23:  void gearSelect(uint8_t gearEngaged){
-[v _gearSelect `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _gearSelect ]
-[v _gearEngaged `uc ~T0 @X0 1 r1 ]
-[f ]
-"32
-[; ;carFunctions.c: 32:      static uint8_t lastGear = 0;
-[v F6660 `uc ~T0 @X0 1 s lastGear ]
-[i F6660
--> -> 0 `i `uc
-]
-[v F6661 `S549 ~T0 @X0 1 s ]
-[i F6661
-:U 0
-:U ..
-:U ..
-:U ..
-:U ..
-:U ..
-"33
-[; ;carFunctions.c: 33:      CAN_TX_MSGOBJ txMsg={0};
--> -> -> 0 `i `l `ul
-..
-..
-..
-..
-..
-..
-]
-[v _txMsg `S549 ~T0 @X0 1 a ]
-[e = _txMsg F6661 ]
-"34
-[; ;carFunctions.c: 34:      uint8_t txdata[8];
-[v _txdata `uc ~T0 @X0 -> 8 `i a ]
-"36
-[; ;carFunctions.c: 36:      if(lastGear!= gearEngaged) {
-[e $ ! != -> F6660 `i -> _gearEngaged `i 581  ]
-{
-"37
-[; ;carFunctions.c: 37:              lastGear = gearEngaged;
-[e = F6660 _gearEngaged ]
-"38
-[; ;carFunctions.c: 38:              txMsg.bF.id.ID = (0x12);
-[e = . . . _txMsg 0 0 0 -> -> -> 18 `i `l `ul ]
-"39
-[; ;carFunctions.c: 39:              txMsg.bF.ctrl.DLC = CAN_DLC_1;
-[e = . . . _txMsg 0 1 0 -> . `E5628 1 `uc ]
-"40
-[; ;carFunctions.c: 40:              txdata[0] = gearEngaged;
-[e = *U + &U _txdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _txdata `ui `ux _gearEngaged ]
-"41
-[; ;carFunctions.c: 41:              CanSend(&txMsg,txdata);
-[e ( _CanSend (2 , &U _txMsg &U _txdata ]
-"42
-[; ;carFunctions.c: 42:      }
-}
-[e :U 581 ]
-"43
-[; ;carFunctions.c: 43:  }
-[e :UE 580 ]
-}
-"45
-[; ;carFunctions.c: 45:  void motorControl(uint8_t percent,uint8_t starter){
+[; ;carFunctions.c: 23:  void motorControl(uint8_t percent,uint8_t starter){
 [v _motorControl `(v ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _motorControl ]
 [v _percent `uc ~T0 @X0 1 r1 ]
 [v _starter `uc ~T0 @X0 1 r2 ]
 [f ]
-"46
-[; ;carFunctions.c: 46:      static uint8_t lastPercent = 0;
-[v F6667 `uc ~T0 @X0 1 s lastPercent ]
-[i F6667
+"24
+[; ;carFunctions.c: 24:      static uint8_t lastPercent = 0;
+[v F6656 `uc ~T0 @X0 1 s lastPercent ]
+[i F6656
 -> -> 0 `i `uc
 ]
-"47
-[; ;carFunctions.c: 47:      static uint8_t lastStarter = 0;
-[v F6668 `uc ~T0 @X0 1 s lastStarter ]
-[i F6668
+"25
+[; ;carFunctions.c: 25:      static uint8_t lastStarter = 0;
+[v F6657 `uc ~T0 @X0 1 s lastStarter ]
+[i F6657
 -> -> 0 `i `uc
 ]
-[v F6669 `S549 ~T0 @X0 1 s ]
-[i F6669
+[v F6658 `S549 ~T0 @X0 1 s ]
+[i F6658
 :U 0
 :U ..
 :U ..
 :U ..
 :U ..
 :U ..
-"48
-[; ;carFunctions.c: 48:      CAN_TX_MSGOBJ txMsg={0};
+"26
+[; ;carFunctions.c: 26:      CAN_TX_MSGOBJ txMsg={0};
 -> -> -> 0 `i `l `ul
 ..
 ..
@@ -1346,72 +1283,72 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _txMsg `S549 ~T0 @X0 1 a ]
-[e = _txMsg F6669 ]
-"49
-[; ;carFunctions.c: 49:      uint8_t txdata[8];
+[e = _txMsg F6658 ]
+"27
+[; ;carFunctions.c: 27:      uint8_t txdata[8];
 [v _txdata `uc ~T0 @X0 -> 8 `i a ]
-"50
-[; ;carFunctions.c: 50:          if((lastPercent != percent)||(lastStarter != starter)) {
-[e $ ! || != -> F6667 `i -> _percent `i != -> F6668 `i -> _starter `i 583  ]
+"28
+[; ;carFunctions.c: 28:          if((lastPercent != percent)||(lastStarter != starter)) {
+[e $ ! || != -> F6656 `i -> _percent `i != -> F6657 `i -> _starter `i 581  ]
 {
-"51
-[; ;carFunctions.c: 51:              lastPercent = percent;
-[e = F6667 _percent ]
-"52
-[; ;carFunctions.c: 52:              lastStarter = starter;
-[e = F6668 _starter ]
-"54
-[; ;carFunctions.c: 54:              txMsg.bF.id.ID = (0x112);
+"29
+[; ;carFunctions.c: 29:              lastPercent = percent;
+[e = F6656 _percent ]
+"30
+[; ;carFunctions.c: 30:              lastStarter = starter;
+[e = F6657 _starter ]
+"32
+[; ;carFunctions.c: 32:              txMsg.bF.id.ID = (0x112);
 [e = . . . _txMsg 0 0 0 -> -> -> 274 `i `l `ul ]
-"55
-[; ;carFunctions.c: 55:              txMsg.bF.ctrl.DLC = CAN_DLC_2;
+"33
+[; ;carFunctions.c: 33:              txMsg.bF.ctrl.DLC = CAN_DLC_2;
 [e = . . . _txMsg 0 1 0 -> . `E5628 2 `uc ]
-"56
-[; ;carFunctions.c: 56:              txdata[0] = percent;
+"34
+[; ;carFunctions.c: 34:              txdata[0] = percent;
 [e = *U + &U _txdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _txdata `ui `ux _percent ]
-"57
-[; ;carFunctions.c: 57:              txdata[1] = starter;
+"35
+[; ;carFunctions.c: 35:              txdata[1] = starter;
 [e = *U + &U _txdata * -> -> -> 1 `i `ui `ux -> -> # *U &U _txdata `ui `ux _starter ]
-"58
-[; ;carFunctions.c: 58:          CanSend(&txMsg,txdata);
+"36
+[; ;carFunctions.c: 36:          CanSend(&txMsg,txdata);
 [e ( _CanSend (2 , &U _txMsg &U _txdata ]
-"59
-[; ;carFunctions.c: 59:      }
+"37
+[; ;carFunctions.c: 37:      }
 }
-[e :U 583 ]
-"60
-[; ;carFunctions.c: 60:  }
-[e :UE 582 ]
+[e :U 581 ]
+"38
+[; ;carFunctions.c: 38:  }
+[e :UE 580 ]
 }
-"62
-[; ;carFunctions.c: 62:  void lightContol_FrontLight(uint8_t light)
+"39
+[; ;carFunctions.c: 39:  void lightContol_FrontLight(uint8_t light)
 [v _lightContol_FrontLight `(v ~T0 @X0 1 ef1`uc ]
-"63
-[; ;carFunctions.c: 63:  {
+"40
+[; ;carFunctions.c: 40:  {
 {
 [e :U _lightContol_FrontLight ]
-"62
-[; ;carFunctions.c: 62:  void lightContol_FrontLight(uint8_t light)
+"39
+[; ;carFunctions.c: 39:  void lightContol_FrontLight(uint8_t light)
 [v _light `uc ~T0 @X0 1 r1 ]
-"63
-[; ;carFunctions.c: 63:  {
+"40
+[; ;carFunctions.c: 40:  {
 [f ]
-"65
-[; ;carFunctions.c: 65:     static uint8_t lastLight=0;
-[v F6674 `uc ~T0 @X0 1 s lastLight ]
-[i F6674
+"42
+[; ;carFunctions.c: 42:     static uint8_t lastLight=0;
+[v F6663 `uc ~T0 @X0 1 s lastLight ]
+[i F6663
 -> -> 0 `i `uc
 ]
-[v F6675 `S549 ~T0 @X0 1 s ]
-[i F6675
+[v F6664 `S549 ~T0 @X0 1 s ]
+[i F6664
 :U 0
 :U ..
 :U ..
 :U ..
 :U ..
 :U ..
-"66
-[; ;carFunctions.c: 66:     CAN_TX_MSGOBJ txMsg={0};
+"43
+[; ;carFunctions.c: 43:     CAN_TX_MSGOBJ txMsg={0};
 -> -> -> 0 `i `l `ul
 ..
 ..
@@ -1421,66 +1358,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _txMsg `S549 ~T0 @X0 1 a ]
-[e = _txMsg F6675 ]
-"67
-[; ;carFunctions.c: 67:     uint8_t txdata[8];
+[e = _txMsg F6664 ]
+"44
+[; ;carFunctions.c: 44:     uint8_t txdata[8];
 [v _txdata `uc ~T0 @X0 -> 8 `i a ]
-"68
-[; ;carFunctions.c: 68:     if(lastLight!= light) {
-[e $ ! != -> F6674 `i -> _light `i 585  ]
+"45
+[; ;carFunctions.c: 45:     if(lastLight!= light) {
+[e $ ! != -> F6663 `i -> _light `i 583  ]
 {
-"69
-[; ;carFunctions.c: 69:         lastLight = light;
-[e = F6674 _light ]
-"71
-[; ;carFunctions.c: 71:         txMsg.bF.id.ID = (0x19);
+"46
+[; ;carFunctions.c: 46:         lastLight = light;
+[e = F6663 _light ]
+"48
+[; ;carFunctions.c: 48:         txMsg.bF.id.ID = (0x19);
 [e = . . . _txMsg 0 0 0 -> -> -> 25 `i `l `ul ]
-"72
-[; ;carFunctions.c: 72:         txMsg.bF.ctrl.DLC = CAN_DLC_1;
+"49
+[; ;carFunctions.c: 49:         txMsg.bF.ctrl.DLC = CAN_DLC_1;
 [e = . . . _txMsg 0 1 0 -> . `E5628 1 `uc ]
-"73
-[; ;carFunctions.c: 73:         txdata[0] = light;
+"50
+[; ;carFunctions.c: 50:         txdata[0] = light;
 [e = *U + &U _txdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _txdata `ui `ux _light ]
-"74
-[; ;carFunctions.c: 74:         CanSend(&txMsg,txdata);
+"51
+[; ;carFunctions.c: 51:         CanSend(&txMsg,txdata);
 [e ( _CanSend (2 , &U _txMsg &U _txdata ]
-"75
-[; ;carFunctions.c: 75:     }
+"52
+[; ;carFunctions.c: 52:     }
 }
-[e :U 585 ]
-"76
-[; ;carFunctions.c: 76:  }
-[e :UE 584 ]
+[e :U 583 ]
+"53
+[; ;carFunctions.c: 53:  }
+[e :UE 582 ]
 }
-"77
-[; ;carFunctions.c: 77:  void lightContol_BackLight(uint8_t light)
+"54
+[; ;carFunctions.c: 54:  void lightContol_BackLight(uint8_t light)
 [v _lightContol_BackLight `(v ~T0 @X0 1 ef1`uc ]
-"78
-[; ;carFunctions.c: 78:  {
+"55
+[; ;carFunctions.c: 55:  {
 {
 [e :U _lightContol_BackLight ]
-"77
-[; ;carFunctions.c: 77:  void lightContol_BackLight(uint8_t light)
+"54
+[; ;carFunctions.c: 54:  void lightContol_BackLight(uint8_t light)
 [v _light `uc ~T0 @X0 1 r1 ]
-"78
-[; ;carFunctions.c: 78:  {
+"55
+[; ;carFunctions.c: 55:  {
 [f ]
-"79
-[; ;carFunctions.c: 79:      static uint8_t lastLight=0;
-[v F6680 `uc ~T0 @X0 1 s lastLight ]
-[i F6680
+"56
+[; ;carFunctions.c: 56:      static uint8_t lastLight=0;
+[v F6669 `uc ~T0 @X0 1 s lastLight ]
+[i F6669
 -> -> 0 `i `uc
 ]
-[v F6681 `S549 ~T0 @X0 1 s ]
-[i F6681
+[v F6670 `S549 ~T0 @X0 1 s ]
+[i F6670
 :U 0
 :U ..
 :U ..
 :U ..
 :U ..
 :U ..
-"80
-[; ;carFunctions.c: 80:      CAN_TX_MSGOBJ txMsg={0};
+"57
+[; ;carFunctions.c: 57:      CAN_TX_MSGOBJ txMsg={0};
 -> -> -> 0 `i `l `ul
 ..
 ..
@@ -1490,716 +1427,566 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _txMsg `S549 ~T0 @X0 1 a ]
-[e = _txMsg F6681 ]
-"81
-[; ;carFunctions.c: 81:      uint8_t txdata[8];
+[e = _txMsg F6670 ]
+"58
+[; ;carFunctions.c: 58:      uint8_t txdata[8];
 [v _txdata `uc ~T0 @X0 -> 8 `i a ]
-"82
-[; ;carFunctions.c: 82:      if(lastLight!= light) {
-[e $ ! != -> F6680 `i -> _light `i 587  ]
+"59
+[; ;carFunctions.c: 59:      if(lastLight!= light) {
+[e $ ! != -> F6669 `i -> _light `i 585  ]
 {
-"83
-[; ;carFunctions.c: 83:          lastLight = light;
-[e = F6680 _light ]
-"85
-[; ;carFunctions.c: 85:          txMsg.bF.id.ID = (0x119);
+"60
+[; ;carFunctions.c: 60:          lastLight = light;
+[e = F6669 _light ]
+"62
+[; ;carFunctions.c: 62:          txMsg.bF.id.ID = (0x119);
 [e = . . . _txMsg 0 0 0 -> -> -> 281 `i `l `ul ]
-"86
-[; ;carFunctions.c: 86:          txMsg.bF.ctrl.DLC = CAN_DLC_1;
+"63
+[; ;carFunctions.c: 63:          txMsg.bF.ctrl.DLC = CAN_DLC_1;
 [e = . . . _txMsg 0 1 0 -> . `E5628 1 `uc ]
-"87
-[; ;carFunctions.c: 87:          txdata[0] = light;
+"64
+[; ;carFunctions.c: 64:          txdata[0] = light;
 [e = *U + &U _txdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _txdata `ui `ux _light ]
-"88
-[; ;carFunctions.c: 88:          CanSend(&txMsg,txdata);
+"65
+[; ;carFunctions.c: 65:          CanSend(&txMsg,txdata);
 [e ( _CanSend (2 , &U _txMsg &U _txdata ]
-"89
-[; ;carFunctions.c: 89:      }
+"66
+[; ;carFunctions.c: 66:      }
 }
-[e :U 587 ]
-"90
-[; ;carFunctions.c: 90:  }
-[e :UE 586 ]
+[e :U 585 ]
+"67
+[; ;carFunctions.c: 67:  }
+[e :UE 584 ]
 }
-"92
-[; ;carFunctions.c: 92:  _Bool motorControl_Process(Event* ev){
+"68
+[; ;carFunctions.c: 68:  _Bool motorControl_Process(Event* ev){
 [v _motorControl_Process `(a ~T0 @X0 1 ef1`*S576 ]
 {
 [e :U _motorControl_Process ]
 [v _ev `*S576 ~T0 @X0 1 r1 ]
 [f ]
-"105
-[; ;carFunctions.c: 105:      static MotorState state = OFF;
-[v F6696 `E6686 ~T0 @X0 1 s state ]
-[i F6696
-. `E6686 1
+"75
+[; ;carFunctions.c: 75:      static MotorState state = OFF;
+[v F6679 `E6675 ~T0 @X0 1 s state ]
+[i F6679
+. `E6675 0
 ]
-"106
-[; ;carFunctions.c: 106:      static MotorState oldState = OFF;
-[v F6697 `E6686 ~T0 @X0 1 s oldState ]
-[i F6697
-. `E6686 1
+"76
+[; ;carFunctions.c: 76:      static MotorState oldState = OFF;
+[v F6680 `E6675 ~T0 @X0 1 s oldState ]
+[i F6680
+. `E6675 0
 ]
-"110
-[; ;carFunctions.c: 110:      switch(state)
-[e $U 590  ]
-"111
-[; ;carFunctions.c: 111:      {
+"80
+[; ;carFunctions.c: 80:      switch(state)
+[e $U 588  ]
+"81
+[; ;carFunctions.c: 81:      {
 {
-"113
-[; ;carFunctions.c: 113:          case OFF:
+"83
+[; ;carFunctions.c: 83:          case OFF:
+[e :U 589 ]
+"84
+[; ;carFunctions.c: 84:              if(ev->id == E_CONTACT_ON)
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 3 `i 590  ]
+"85
+[; ;carFunctions.c: 85:              {
+{
+"86
+[; ;carFunctions.c: 86:                  state = CRUISE;
+[e = F6679 . `E6675 1 ]
+"88
+[; ;carFunctions.c: 88:              }
+}
+[e :U 590 ]
+"89
+[; ;carFunctions.c: 89:              break;
+[e $U 587  ]
+"92
+[; ;carFunctions.c: 92:          case CRUISE:
 [e :U 591 ]
-"114
-[; ;carFunctions.c: 114:              if(ev->id == E_CONTACT_ON)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 3 `i 592  ]
-"115
-[; ;carFunctions.c: 115:              {
+"93
+[; ;carFunctions.c: 93:              if(ev->id == E_CONTACT_OFF)
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 592  ]
+"94
+[; ;carFunctions.c: 94:              {
 {
-"116
-[; ;carFunctions.c: 116:                  state = STARTING;
-[e = F6696 . `E6686 2 ]
-"118
-[; ;carFunctions.c: 118:              }
+"95
+[; ;carFunctions.c: 95:                  state = OFF;
+[e = F6679 . `E6675 0 ]
+"96
+[; ;carFunctions.c: 96:              }
 }
 [e :U 592 ]
-"119
-[; ;carFunctions.c: 119:              break;
-[e $U 589  ]
-"121
-[; ;carFunctions.c: 121:          case STARTING:
+"98
+[; ;carFunctions.c: 98:          default :
 [e :U 593 ]
+"99
+[; ;carFunctions.c: 99:              break;
+[e $U 587  ]
+"100
+[; ;carFunctions.c: 100:      }
+}
+[e $U 587  ]
+[e :U 588 ]
+[e [\ -> F6679 `ui , $ -> . `E6675 0 `ui 589
+ , $ -> . `E6675 1 `ui 591
+ 593 ]
+[e :U 587 ]
+"103
+[; ;carFunctions.c: 103:      if(oldState == state)
+[e $ ! == -> F6680 `ui -> F6679 `ui 594  ]
+"104
+[; ;carFunctions.c: 104:     {
+{
+"105
+[; ;carFunctions.c: 105:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 586  ]
+"106
+[; ;carFunctions.c: 106:     }
+}
+[e :U 594 ]
+"109
+[; ;carFunctions.c: 109:     oldState = state;
+[e = F6680 F6679 ]
+"112
+[; ;carFunctions.c: 112:     switch(state)
+[e $U 596  ]
+"113
+[; ;carFunctions.c: 113:      {
+{
+"115
+[; ;carFunctions.c: 115:          case OFF:
+[e :U 597 ]
+"116
+[; ;carFunctions.c: 116:              motorControl(0,0);
+[e ( _motorControl (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"117
+[; ;carFunctions.c: 117:              break;
+[e $U 595  ]
+"118
+[; ;carFunctions.c: 118:          case CRUISE:
+[e :U 598 ]
+"119
+[; ;carFunctions.c: 119:              motorControl(10,1);
+[e ( _motorControl (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+"120
+[; ;carFunctions.c: 120:              break;
+[e $U 595  ]
 "122
-[; ;carFunctions.c: 122:                  state = STANDBY;
-[e = F6696 . `E6686 5 ]
+[; ;carFunctions.c: 122:          default:
+[e :U 599 ]
 "123
 [; ;carFunctions.c: 123:              break;
-[e $U 589  ]
-"125
-[; ;carFunctions.c: 125:          case STANDBY:
-[e :U 594 ]
-"126
-[; ;carFunctions.c: 126:              if(ev->id == E_CONTACT_OFF)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 595  ]
-"127
-[; ;carFunctions.c: 127:              {
-{
-"128
-[; ;carFunctions.c: 128:                  state = OFF;
-[e = F6696 . `E6686 1 ]
-"129
-[; ;carFunctions.c: 129:              }else if(ev->id == E_ACCELERATION_ON)
+[e $U 595  ]
+"124
+[; ;carFunctions.c: 124:      }
 }
-[e $U 596  ]
-[e :U 595 ]
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 8 `i 597  ]
-"130
-[; ;carFunctions.c: 130:              {
-{
-"131
-[; ;carFunctions.c: 131:                  state = ACCELERATION;
-[e = F6696 . `E6686 6 ]
-"132
-[; ;carFunctions.c: 132:              }
-}
-[e :U 597 ]
+[e $U 595  ]
 [e :U 596 ]
-"133
-[; ;carFunctions.c: 133:          case ACCELERATION:
-[e :U 598 ]
-"134
-[; ;carFunctions.c: 134:              if(ev->id == E_ACCELERATION_OFF)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 9 `i 599  ]
-"135
-[; ;carFunctions.c: 135:              {
-{
-"136
-[; ;carFunctions.c: 136:                  state = DECELERATION;
-[e = F6696 . `E6686 7 ]
-"137
-[; ;carFunctions.c: 137:              }else if(ev->id == E_HIGH_BRAKE)
+[e [\ -> F6679 `ui , $ -> . `E6675 0 `ui 597
+ , $ -> . `E6675 1 `ui 598
+ 599 ]
+[e :U 595 ]
+"125
+[; ;carFunctions.c: 125:      return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 586  ]
+"127
+[; ;carFunctions.c: 127:  }
+[e :UE 586 ]
 }
-[e $U 600  ]
-[e :U 599 ]
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 4 `i 601  ]
+"128
+[; ;carFunctions.c: 128:  _Bool lightControl_Process(Event* ev)
+[v _lightControl_Process `(a ~T0 @X0 1 ef1`*S576 ]
+"129
+[; ;carFunctions.c: 129:  {
+{
+[e :U _lightControl_Process ]
+"128
+[; ;carFunctions.c: 128:  _Bool lightControl_Process(Event* ev)
+[v _ev `*S576 ~T0 @X0 1 r1 ]
+"129
+[; ;carFunctions.c: 129:  {
+[f ]
 "138
-[; ;carFunctions.c: 138:              {
-{
+[; ;carFunctions.c: 138:      static LightState state = INIT;
+[v F6689 `E6683 ~T0 @X0 1 s state ]
+[i F6689
+. `E6683 0
+]
 "139
-[; ;carFunctions.c: 139:                  state = DECELERATION;
-[e = F6696 . `E6686 7 ]
+[; ;carFunctions.c: 139:      static LightState oldState = INIT;
+[v F6690 `E6683 ~T0 @X0 1 s oldState ]
+[i F6690
+. `E6683 0
+]
 "140
-[; ;carFunctions.c: 140:              }
-}
-[e :U 601 ]
-[e :U 600 ]
+[; ;carFunctions.c: 140:      switch(state)
+[e $U 602  ]
+"141
+[; ;carFunctions.c: 141:      {
+{
 "142
-[; ;carFunctions.c: 142:              break;
-[e $U 589  ]
-"143
-[; ;carFunctions.c: 143:          case DECELERATION:
-[e :U 602 ]
-"144
-[; ;carFunctions.c: 144:              if (carState.speed == 0){
-[e $ ! == -> . _carState 7 `i -> 0 `i 603  ]
-{
-"145
-[; ;carFunctions.c: 145:                  state = STANDBY;
-[e = F6696 . `E6686 5 ]
-"146
-[; ;carFunctions.c: 146:              }else if ((carState.speed > 0) & (ev->id !=E_HIGH_BRAKE)){
-}
-[e $U 604  ]
+[; ;carFunctions.c: 142:          case INIT:
 [e :U 603 ]
-[e $ ! & > -> . _carState 7 `i -> 0 `i != -> . *U _ev 0 `i -> . `E6536 4 `i 605  ]
+"143
+[; ;carFunctions.c: 143:              if(ev->id == E_INIT){
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 1 `i 604  ]
 {
-"147
-[; ;carFunctions.c: 147:                  state = CRUISE;
-[e = F6696 . `E6686 3 ]
-"148
-[; ;carFunctions.c: 148:              }
+"144
+[; ;carFunctions.c: 144:                  state = OFF;
+[e = F6689 . `E6683 1 ]
+"145
+[; ;carFunctions.c: 145:              }
 }
-[e :U 605 ]
 [e :U 604 ]
+"146
+[; ;carFunctions.c: 146:              break;
+[e $U 601  ]
+"147
+[; ;carFunctions.c: 147:          case OFF:
+[e :U 605 ]
+"148
+[; ;carFunctions.c: 148:              if(ev->id == E_CONTACT_ON)
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 3 `i 606  ]
+"149
+[; ;carFunctions.c: 149:              {
+{
 "150
-[; ;carFunctions.c: 150:              break;
-[e $U 589  ]
+[; ;carFunctions.c: 150:                  state = CRUISE;
+[e = F6689 . `E6683 2 ]
 "152
-[; ;carFunctions.c: 152:          case CRUISE:
+[; ;carFunctions.c: 152:              }
+}
 [e :U 606 ]
 "153
-[; ;carFunctions.c: 153:              if(ev->id == E_CONTACT_OFF)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 607  ]
+[; ;carFunctions.c: 153:              break;
+[e $U 601  ]
 "154
-[; ;carFunctions.c: 154:              {
-{
-"155
-[; ;carFunctions.c: 155:                  state = OFF;
-[e = F6696 . `E6686 1 ]
-"156
-[; ;carFunctions.c: 156:              }else if(ev->id == E_ACCELERATION_OFF)
-}
-[e $U 608  ]
+[; ;carFunctions.c: 154:          case CRUISE:
 [e :U 607 ]
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 9 `i 609  ]
-"157
-[; ;carFunctions.c: 157:              {
+"155
+[; ;carFunctions.c: 155:              if(ev->id == E_CONTACT_OFF)
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 608  ]
+"156
+[; ;carFunctions.c: 156:              {
 {
-"158
-[; ;carFunctions.c: 158:                  state = STANDBY;
-[e = F6696 . `E6686 5 ]
+"157
+[; ;carFunctions.c: 157:                  state = OFF;
+[e = F6689 . `E6683 1 ]
 "159
 [; ;carFunctions.c: 159:              }
 }
-[e :U 609 ]
+[e $U 609  ]
+"160
+[; ;carFunctions.c: 160:              else if (ev->id == E_HIGH_BRAKE)
 [e :U 608 ]
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 4 `i 610  ]
 "161
-[; ;carFunctions.c: 161:          default :
-[e :U 610 ]
+[; ;carFunctions.c: 161:              {
+{
 "162
-[; ;carFunctions.c: 162:              break;
-[e $U 589  ]
+[; ;carFunctions.c: 162:                  state = BRAKE;
+[e = F6689 . `E6683 3 ]
 "163
-[; ;carFunctions.c: 163:      }
+[; ;carFunctions.c: 163:              }
 }
-[e $U 589  ]
-[e :U 590 ]
-[e [\ -> F6696 `ui , $ -> . `E6686 1 `ui 591
- , $ -> . `E6686 2 `ui 593
- , $ -> . `E6686 5 `ui 594
- , $ -> . `E6686 6 `ui 598
- , $ -> . `E6686 7 `ui 602
- , $ -> . `E6686 3 `ui 606
- 610 ]
-[e :U 589 ]
+[e :U 610 ]
+[e :U 609 ]
+"164
+[; ;carFunctions.c: 164:              break;
+[e $U 601  ]
+"165
+[; ;carFunctions.c: 165:          case BRAKE:
+[e :U 611 ]
 "166
-[; ;carFunctions.c: 166:      if(oldState == state)
-[e $ ! == -> F6697 `ui -> F6696 `ui 611  ]
+[; ;carFunctions.c: 166:              if(ev->id == E_CONTACT_OFF)
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 612  ]
 "167
-[; ;carFunctions.c: 167:     {
+[; ;carFunctions.c: 167:              {
 {
 "168
-[; ;carFunctions.c: 168:         return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 588  ]
-"169
-[; ;carFunctions.c: 169:     }
-}
-[e :U 611 ]
+[; ;carFunctions.c: 168:                  state = OFF;
+[e = F6689 . `E6683 1 ]
 "170
-[; ;carFunctions.c: 170:     oldState = state;
-[e = F6697 F6696 ]
-"173
-[; ;carFunctions.c: 173:     switch(state)
+[; ;carFunctions.c: 170:              }else if (ev->id == E_HIGH_BRAKE_RELASED){
+}
 [e $U 613  ]
-"174
-[; ;carFunctions.c: 174:      {
+[e :U 612 ]
+[e $ ! == -> . *U _ev 0 `i -> . `E6536 10 `i 614  ]
 {
-"176
-[; ;carFunctions.c: 176:          case OFF:
+"171
+[; ;carFunctions.c: 171:                  state = CRUISE;
+[e = F6689 . `E6683 2 ]
+"172
+[; ;carFunctions.c: 172:              }
+}
 [e :U 614 ]
-"177
-[; ;carFunctions.c: 177:              motorControl(0,0);
-[e ( _motorControl (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"178
-[; ;carFunctions.c: 178:              break;
-[e $U 612  ]
-"179
-[; ;carFunctions.c: 179:          case STARTING:
+[e :U 613 ]
+"175
+[; ;carFunctions.c: 175:          default:
 [e :U 615 ]
+"176
+[; ;carFunctions.c: 176:              break;
+[e $U 601  ]
+"177
+[; ;carFunctions.c: 177:      }
+}
+[e $U 601  ]
+[e :U 602 ]
+[e [\ -> F6689 `ui , $ -> . `E6683 0 `ui 603
+ , $ -> . `E6683 1 `ui 605
+ , $ -> . `E6683 2 `ui 607
+ , $ -> . `E6683 3 `ui 611
+ 615 ]
+[e :U 601 ]
+"178
+[; ;carFunctions.c: 178:     if(oldState == state)
+[e $ ! == -> F6690 `ui -> F6689 `ui 616  ]
+"179
+[; ;carFunctions.c: 179:     {
+{
 "180
-[; ;carFunctions.c: 180:              motorControl(10,1);
-[e ( _motorControl (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+[; ;carFunctions.c: 180:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 600  ]
 "181
-[; ;carFunctions.c: 181:              break;
-[e $U 612  ]
-"182
-[; ;carFunctions.c: 182:          case CRUISE:
+[; ;carFunctions.c: 181:     }
+}
 [e :U 616 ]
+"182
+[; ;carFunctions.c: 182:     oldState = state;
+[e = F6690 F6689 ]
+"183
+[; ;carFunctions.c: 183:     switch(state)
+[e $U 618  ]
 "184
-[; ;carFunctions.c: 184:              break;
-[e $U 612  ]
+[; ;carFunctions.c: 184:      {
+{
 "185
-[; ;carFunctions.c: 185:          case STANDBY:
-[e :U 617 ]
+[; ;carFunctions.c: 185:          case INIT:
+[e :U 619 ]
+"186
+[; ;carFunctions.c: 186:          break;
+[e $U 617  ]
 "187
-[; ;carFunctions.c: 187:             break;
-[e $U 612  ]
+[; ;carFunctions.c: 187:          case OFF:
+[e :U 620 ]
 "188
-[; ;carFunctions.c: 188:          case BRAKE:
-[e :U 618 ]
+[; ;carFunctions.c: 188:              lightContol_FrontLight(0);
+[e ( _lightContol_FrontLight (1 -> -> 0 `i `uc ]
+"189
+[; ;carFunctions.c: 189:              lightContol_BackLight(0);
+[e ( _lightContol_BackLight (1 -> -> 0 `i `uc ]
 "190
 [; ;carFunctions.c: 190:              break;
-[e $U 612  ]
+[e $U 617  ]
+"191
+[; ;carFunctions.c: 191:          case CRUISE:
+[e :U 621 ]
 "192
-[; ;carFunctions.c: 192:          case ACCELERATION:
-[e :U 619 ]
+[; ;carFunctions.c: 192:              lightContol_FrontLight(50);
+[e ( _lightContol_FrontLight (1 -> -> 50 `i `uc ]
+"193
+[; ;carFunctions.c: 193:              lightContol_BackLight(50);
+[e ( _lightContol_BackLight (1 -> -> 50 `i `uc ]
+"194
+[; ;carFunctions.c: 194:              break;
+[e $U 617  ]
+"195
+[; ;carFunctions.c: 195:          case BRAKE:
+[e :U 622 ]
 "196
-[; ;carFunctions.c: 196:              break;
-[e $U 612  ]
+[; ;carFunctions.c: 196:              lightContol_BackLight(100);
+[e ( _lightContol_BackLight (1 -> -> 100 `i `uc ]
 "197
-[; ;carFunctions.c: 197:          case DECELERATION:
-[e :U 620 ]
+[; ;carFunctions.c: 197:              break;
+[e $U 617  ]
+"199
+[; ;carFunctions.c: 199:          default:
+[e :U 623 ]
 "200
 [; ;carFunctions.c: 200:              break;
-[e $U 612  ]
+[e $U 617  ]
+"201
+[; ;carFunctions.c: 201:      }
+}
+[e $U 617  ]
+[e :U 618 ]
+[e [\ -> F6689 `ui , $ -> . `E6683 0 `ui 619
+ , $ -> . `E6683 1 `ui 620
+ , $ -> . `E6683 2 `ui 621
+ , $ -> . `E6683 3 `ui 622
+ 623 ]
+[e :U 617 ]
 "202
-[; ;carFunctions.c: 202:          default:
-[e :U 621 ]
+[; ;carFunctions.c: 202:      return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 600  ]
 "203
-[; ;carFunctions.c: 203:              break;
-[e $U 612  ]
+[; ;carFunctions.c: 203:  }
+[e :UE 600 ]
+}
 "204
-[; ;carFunctions.c: 204:      }
-}
-[e $U 612  ]
-[e :U 613 ]
-[e [\ -> F6696 `ui , $ -> . `E6686 1 `ui 614
- , $ -> . `E6686 2 `ui 615
- , $ -> . `E6686 3 `ui 616
- , $ -> . `E6686 5 `ui 617
- , $ -> . `E6686 4 `ui 618
- , $ -> . `E6686 6 `ui 619
- , $ -> . `E6686 7 `ui 620
- 621 ]
-[e :U 612 ]
-"205
-[; ;carFunctions.c: 205:      return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 588  ]
-"207
-[; ;carFunctions.c: 207:  }
-[e :UE 588 ]
-}
-"209
-[; ;carFunctions.c: 209:  _Bool lightControl_Process(Event* ev)
-[v _lightControl_Process `(a ~T0 @X0 1 ef1`*S576 ]
-"210
-[; ;carFunctions.c: 210:  {
-{
-[e :U _lightControl_Process ]
-"209
-[; ;carFunctions.c: 209:  _Bool lightControl_Process(Event* ev)
-[v _ev `*S576 ~T0 @X0 1 r1 ]
-"210
-[; ;carFunctions.c: 210:  {
-[f ]
-"219
-[; ;carFunctions.c: 219:      static LightState state = INIT;
-[v F6706 `E6700 ~T0 @X0 1 s state ]
-[i F6706
-. `E6700 0
-]
-"220
-[; ;carFunctions.c: 220:      static LightState oldState = INIT;
-[v F6707 `E6700 ~T0 @X0 1 s oldState ]
-[i F6707
-. `E6700 0
-]
-"221
-[; ;carFunctions.c: 221:      switch(state)
-[e $U 624  ]
-"222
-[; ;carFunctions.c: 222:      {
-{
-"223
-[; ;carFunctions.c: 223:          case INIT:
-[e :U 625 ]
-"224
-[; ;carFunctions.c: 224:              if(ev->id == E_INIT){
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 1 `i 626  ]
-{
-"225
-[; ;carFunctions.c: 225:                  state = OFF;
-[e = F6706 . `E6700 1 ]
-"226
-[; ;carFunctions.c: 226:              }
-}
-[e :U 626 ]
-"227
-[; ;carFunctions.c: 227:              break;
-[e $U 623  ]
-"228
-[; ;carFunctions.c: 228:          case OFF:
-[e :U 627 ]
-"229
-[; ;carFunctions.c: 229:              if(ev->id == E_CONTACT_ON)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 3 `i 628  ]
-"230
-[; ;carFunctions.c: 230:              {
-{
-"231
-[; ;carFunctions.c: 231:                  state = CRUISE;
-[e = F6706 . `E6700 2 ]
-"233
-[; ;carFunctions.c: 233:              }
-}
-[e :U 628 ]
-"234
-[; ;carFunctions.c: 234:              break;
-[e $U 623  ]
-"235
-[; ;carFunctions.c: 235:          case CRUISE:
-[e :U 629 ]
-"236
-[; ;carFunctions.c: 236:              if(ev->id == E_CONTACT_OFF)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 630  ]
-"237
-[; ;carFunctions.c: 237:              {
-{
-"238
-[; ;carFunctions.c: 238:                  state = OFF;
-[e = F6706 . `E6700 1 ]
-"240
-[; ;carFunctions.c: 240:              }
-}
-[e $U 631  ]
-"241
-[; ;carFunctions.c: 241:              else if (ev->id == E_HIGH_BRAKE)
-[e :U 630 ]
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 4 `i 632  ]
-"242
-[; ;carFunctions.c: 242:              {
-{
-"243
-[; ;carFunctions.c: 243:                  state = BRAKE;
-[e = F6706 . `E6700 3 ]
-"244
-[; ;carFunctions.c: 244:              }
-}
-[e :U 632 ]
-[e :U 631 ]
-"245
-[; ;carFunctions.c: 245:              break;
-[e $U 623  ]
-"246
-[; ;carFunctions.c: 246:          case BRAKE:
-[e :U 633 ]
-"247
-[; ;carFunctions.c: 247:              if(ev->id == E_CONTACT_OFF)
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 2 `i 634  ]
-"248
-[; ;carFunctions.c: 248:              {
-{
-"249
-[; ;carFunctions.c: 249:                  state = OFF;
-[e = F6706 . `E6700 1 ]
-"251
-[; ;carFunctions.c: 251:              }else if (ev->id == E_HIGH_BRAKE_RELASED){
-}
-[e $U 635  ]
-[e :U 634 ]
-[e $ ! == -> . *U _ev 0 `i -> . `E6536 10 `i 636  ]
-{
-"252
-[; ;carFunctions.c: 252:                  state = CRUISE;
-[e = F6706 . `E6700 2 ]
-"253
-[; ;carFunctions.c: 253:              }
-}
-[e :U 636 ]
-[e :U 635 ]
-"256
-[; ;carFunctions.c: 256:          default:
-[e :U 637 ]
-"257
-[; ;carFunctions.c: 257:              break;
-[e $U 623  ]
-"258
-[; ;carFunctions.c: 258:      }
-}
-[e $U 623  ]
-[e :U 624 ]
-[e [\ -> F6706 `ui , $ -> . `E6700 0 `ui 625
- , $ -> . `E6700 1 `ui 627
- , $ -> . `E6700 2 `ui 629
- , $ -> . `E6700 3 `ui 633
- 637 ]
-[e :U 623 ]
-"259
-[; ;carFunctions.c: 259:     if(oldState == state)
-[e $ ! == -> F6707 `ui -> F6706 `ui 638  ]
-"260
-[; ;carFunctions.c: 260:     {
-{
-"261
-[; ;carFunctions.c: 261:         return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 622  ]
-"262
-[; ;carFunctions.c: 262:     }
-}
-[e :U 638 ]
-"263
-[; ;carFunctions.c: 263:     oldState = state;
-[e = F6707 F6706 ]
-"264
-[; ;carFunctions.c: 264:     switch(state)
-[e $U 640  ]
-"265
-[; ;carFunctions.c: 265:      {
-{
-"266
-[; ;carFunctions.c: 266:          case INIT:
-[e :U 641 ]
-"267
-[; ;carFunctions.c: 267:          break;
-[e $U 639  ]
-"268
-[; ;carFunctions.c: 268:          case OFF:
-[e :U 642 ]
-"269
-[; ;carFunctions.c: 269:              lightContol_FrontLight(0);
-[e ( _lightContol_FrontLight (1 -> -> 0 `i `uc ]
-"270
-[; ;carFunctions.c: 270:              lightContol_BackLight(0);
-[e ( _lightContol_BackLight (1 -> -> 0 `i `uc ]
-"271
-[; ;carFunctions.c: 271:              break;
-[e $U 639  ]
-"272
-[; ;carFunctions.c: 272:          case CRUISE:
-[e :U 643 ]
-"273
-[; ;carFunctions.c: 273:              lightContol_FrontLight(50);
-[e ( _lightContol_FrontLight (1 -> -> 50 `i `uc ]
-"274
-[; ;carFunctions.c: 274:              lightContol_BackLight(50);
-[e ( _lightContol_BackLight (1 -> -> 50 `i `uc ]
-"275
-[; ;carFunctions.c: 275:              break;
-[e $U 639  ]
-"276
-[; ;carFunctions.c: 276:          case BRAKE:
-[e :U 644 ]
-"277
-[; ;carFunctions.c: 277:              lightContol_BackLight(100);
-[e ( _lightContol_BackLight (1 -> -> 100 `i `uc ]
-"278
-[; ;carFunctions.c: 278:              break;
-[e $U 639  ]
-"280
-[; ;carFunctions.c: 280:          default:
-[e :U 645 ]
-"281
-[; ;carFunctions.c: 281:              break;
-[e $U 639  ]
-"282
-[; ;carFunctions.c: 282:      }
-}
-[e $U 639  ]
-[e :U 640 ]
-[e [\ -> F6706 `ui , $ -> . `E6700 0 `ui 641
- , $ -> . `E6700 1 `ui 642
- , $ -> . `E6700 2 `ui 643
- , $ -> . `E6700 3 `ui 644
- 645 ]
-[e :U 639 ]
-"283
-[; ;carFunctions.c: 283:      return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 622  ]
-"284
-[; ;carFunctions.c: 284:  }
-[e :UE 622 ]
-}
-"286
-[; ;carFunctions.c: 286:  void updateCarState(void)
+[; ;carFunctions.c: 204:  void updateCarState(void)
 [v _updateCarState `(v ~T0 @X0 1 ef ]
-"287
-[; ;carFunctions.c: 287:  {
+"205
+[; ;carFunctions.c: 205:  {
 {
 [e :U _updateCarState ]
 [f ]
-"289
-[; ;carFunctions.c: 289:      CAN_RX_MSGOBJ rxObj;
+"207
+[; ;carFunctions.c: 207:      CAN_RX_MSGOBJ rxObj;
 [v _rxObj `S551 ~T0 @X0 1 a ]
-"290
-[; ;carFunctions.c: 290:      uint8_t rxdata[8];
+"208
+[; ;carFunctions.c: 208:      uint8_t rxdata[8];
 [v _rxdata `uc ~T0 @X0 -> 8 `i a ]
-"292
-[; ;carFunctions.c: 292:      if (CanReceive(&rxObj, rxdata) == 0)
-[e $ ! == -> ( _CanReceive (2 , &U _rxObj &U _rxdata `i -> 0 `i 647  ]
-"293
-[; ;carFunctions.c: 293:      {
+"210
+[; ;carFunctions.c: 210:      if (CanReceive(&rxObj, rxdata) == 0)
+[e $ ! == -> ( _CanReceive (2 , &U _rxObj &U _rxdata `i -> 0 `i 625  ]
+"211
+[; ;carFunctions.c: 211:      {
 {
-"294
-[; ;carFunctions.c: 294:          switch (rxObj.bF.id.ID & 0x7F0)
-[e $U 649  ]
-"295
-[; ;carFunctions.c: 295:          {
+"212
+[; ;carFunctions.c: 212:          switch (rxObj.bF.id.ID & 0x7F0)
+[e $U 627  ]
+"213
+[; ;carFunctions.c: 213:          {
 {
-"297
-[; ;carFunctions.c: 297:              case (0x05<<4):
-[e :U 650 ]
-"298
-[; ;carFunctions.c: 298:                  carState.contactKey = rxdata[0];
+"215
+[; ;carFunctions.c: 215:              case (0x05<<4):
+[e :U 628 ]
+"216
+[; ;carFunctions.c: 216:                  carState.contactKey = rxdata[0];
 [e = . _carState 11 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
-"300
-[; ;carFunctions.c: 300:                  if (rxdata[0] == 0)
-[e $ ! == -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 0 `i 651  ]
-"301
-[; ;carFunctions.c: 301:                  {
+"218
+[; ;carFunctions.c: 218:                  if (rxdata[0] == 0)
+[e $ ! == -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 0 `i 629  ]
+"219
+[; ;carFunctions.c: 219:                  {
 {
-"302
-[; ;carFunctions.c: 302:                      XF_post(lightControl_Process, E_CONTACT_OFF, 0);
+"220
+[; ;carFunctions.c: 220:                      XF_post(lightControl_Process, E_CONTACT_OFF, 0);
 [e ( _XF_post (3 , , &U _lightControl_Process -> . `E6536 2 `uc -> -> 0 `i `us ]
-"303
-[; ;carFunctions.c: 303:                      XF_post(motorControl_Process, E_CONTACT_OFF, 0);
+"221
+[; ;carFunctions.c: 221:                      XF_post(motorControl_Process, E_CONTACT_OFF, 0);
 [e ( _XF_post (3 , , &U _motorControl_Process -> . `E6536 2 `uc -> -> 0 `i `us ]
-"304
-[; ;carFunctions.c: 304:                  }
+"222
+[; ;carFunctions.c: 222:                  }
 }
-[e $U 652  ]
-"305
-[; ;carFunctions.c: 305:                  else
-[e :U 651 ]
-"306
-[; ;carFunctions.c: 306:                  {
+[e $U 630  ]
+"223
+[; ;carFunctions.c: 223:                  else
+[e :U 629 ]
+"224
+[; ;carFunctions.c: 224:                  {
 {
-"307
-[; ;carFunctions.c: 307:                      XF_post(lightControl_Process, E_CONTACT_ON, 0);
+"225
+[; ;carFunctions.c: 225:                      XF_post(lightControl_Process, E_CONTACT_ON, 0);
 [e ( _XF_post (3 , , &U _lightControl_Process -> . `E6536 3 `uc -> -> 0 `i `us ]
-"308
-[; ;carFunctions.c: 308:                      XF_post(motorControl_Process, E_CONTACT_ON, 0);
+"226
+[; ;carFunctions.c: 226:                      XF_post(motorControl_Process, E_CONTACT_ON, 0);
 [e ( _XF_post (3 , , &U _motorControl_Process -> . `E6536 3 `uc -> -> 0 `i `us ]
-"310
-[; ;carFunctions.c: 310:                  }
+"228
+[; ;carFunctions.c: 228:                  }
 }
-[e :U 652 ]
-"311
-[; ;carFunctions.c: 311:                  break;
-[e $U 648  ]
-"314
-[; ;carFunctions.c: 314:              case (0x04<<4):
-[e :U 653 ]
-"315
-[; ;carFunctions.c: 315:                  carState.brakePedal = rxdata[0];
+[e :U 630 ]
+"229
+[; ;carFunctions.c: 229:                  break;
+[e $U 626  ]
+"232
+[; ;carFunctions.c: 232:              case (0x04<<4):
+[e :U 631 ]
+"233
+[; ;carFunctions.c: 233:                  carState.brakePedal = rxdata[0];
 [e = . _carState 9 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
-"317
-[; ;carFunctions.c: 317:                  if (rxdata[0] > 6)
-[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 654  ]
-"318
-[; ;carFunctions.c: 318:                  {
+"235
+[; ;carFunctions.c: 235:                  if (rxdata[0] > 6)
+[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 632  ]
+"236
+[; ;carFunctions.c: 236:                  {
 {
-"319
-[; ;carFunctions.c: 319:                      XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
+"237
+[; ;carFunctions.c: 237:                      XF_post(lightControl_Process, E_HIGH_BRAKE, 0);
 [e ( _XF_post (3 , , &U _lightControl_Process -> . `E6536 4 `uc -> -> 0 `i `us ]
-"320
-[; ;carFunctions.c: 320:                  }else if (rxdata[0] < 6)
+"238
+[; ;carFunctions.c: 238:                  }else if (rxdata[0] < 6)
 }
-[e $U 655  ]
-[e :U 654 ]
-[e $ ! < -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 656  ]
-"321
-[; ;carFunctions.c: 321:                  {
+[e $U 633  ]
+[e :U 632 ]
+[e $ ! < -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 634  ]
+"239
+[; ;carFunctions.c: 239:                  {
 {
-"322
-[; ;carFunctions.c: 322:                      XF_post(lightControl_Process, E_HIGH_BRAKE_RELASED, 0);
+"240
+[; ;carFunctions.c: 240:                      XF_post(lightControl_Process, E_HIGH_BRAKE_RELASED, 0);
 [e ( _XF_post (3 , , &U _lightControl_Process -> . `E6536 10 `uc -> -> 0 `i `us ]
-"323
-[; ;carFunctions.c: 323:                  }
+"241
+[; ;carFunctions.c: 241:                  }
 }
-[e :U 656 ]
-[e :U 655 ]
-"324
-[; ;carFunctions.c: 324:                  break;
-[e $U 648  ]
-"328
-[; ;carFunctions.c: 328:              case (0x14<<4):
-[e :U 657 ]
-"329
-[; ;carFunctions.c: 329:                  carState.accelPedal = rxdata[0];
+[e :U 634 ]
+[e :U 633 ]
+"242
+[; ;carFunctions.c: 242:                  break;
+[e $U 626  ]
+"246
+[; ;carFunctions.c: 246:              case (0x14<<4):
+[e :U 635 ]
+"247
+[; ;carFunctions.c: 247:                  carState.accelPedal = rxdata[0];
 [e = . _carState 10 *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux ]
-"330
-[; ;carFunctions.c: 330:                  if (rxdata[0] > 6)
-[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 658  ]
-"331
-[; ;carFunctions.c: 331:                  {
+"248
+[; ;carFunctions.c: 248:                  if (rxdata[0] > 10)
+[e $ ! > -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 10 `i 636  ]
+"249
+[; ;carFunctions.c: 249:                  {
 {
-"332
-[; ;carFunctions.c: 332:                      XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
+"250
+[; ;carFunctions.c: 250:                      XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
 [e ( _XF_post (3 , , &U _motorControl_Process -> . `E6536 8 `uc -> -> 0 `i `us ]
-"333
-[; ;carFunctions.c: 333:                  }else if (rxdata[0] < 6)
+"251
+[; ;carFunctions.c: 251:                  }else if (rxdata[0] < 10)
 }
-[e $U 659  ]
-[e :U 658 ]
-[e $ ! < -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 6 `i 660  ]
-"334
-[; ;carFunctions.c: 334:                  {
+[e $U 637  ]
+[e :U 636 ]
+[e $ ! < -> *U + &U _rxdata * -> -> -> 0 `i `ui `ux -> -> # *U &U _rxdata `ui `ux `i -> 10 `i 638  ]
+"252
+[; ;carFunctions.c: 252:                  {
 {
-"335
-[; ;carFunctions.c: 335:                      XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
+"253
+[; ;carFunctions.c: 253:                      XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
 [e ( _XF_post (3 , , &U _motorControl_Process -> . `E6536 9 `uc -> -> 0 `i `us ]
-"336
-[; ;carFunctions.c: 336:                  }
+"254
+[; ;carFunctions.c: 254:                  }
 }
-[e :U 660 ]
-[e :U 659 ]
-"337
-[; ;carFunctions.c: 337:                  break;
-[e $U 648  ]
-"339
-[; ;carFunctions.c: 339:              default:
-[e :U 661 ]
-"341
-[; ;carFunctions.c: 341:                  break;
-[e $U 648  ]
-"342
-[; ;carFunctions.c: 342:          }
+[e :U 638 ]
+[e :U 637 ]
+"255
+[; ;carFunctions.c: 255:                  break;
+[e $U 626  ]
+"257
+[; ;carFunctions.c: 257:              default:
+[e :U 639 ]
+"259
+[; ;carFunctions.c: 259:                  break;
+[e $U 626  ]
+"260
+[; ;carFunctions.c: 260:          }
 }
-[e $U 648  ]
-[e :U 649 ]
-[e [\ & . . . _rxObj 0 0 0 -> -> -> 2032 `i `l `ul , $ -> -> << -> 5 `i -> 4 `i `l `ul 650
- , $ -> -> << -> 4 `i -> 4 `i `l `ul 653
- , $ -> -> << -> 20 `i -> 4 `i `l `ul 657
- 661 ]
-[e :U 648 ]
-"343
-[; ;carFunctions.c: 343:      }
+[e $U 626  ]
+[e :U 627 ]
+[e [\ & . . . _rxObj 0 0 0 -> -> -> 2032 `i `l `ul , $ -> -> << -> 5 `i -> 4 `i `l `ul 628
+ , $ -> -> << -> 4 `i -> 4 `i `l `ul 631
+ , $ -> -> << -> 20 `i -> 4 `i `l `ul 635
+ 639 ]
+[e :U 626 ]
+"261
+[; ;carFunctions.c: 261:      }
 }
-[e :U 647 ]
-"344
-[; ;carFunctions.c: 344:  }
-[e :UE 646 ]
+[e :U 625 ]
+"262
+[; ;carFunctions.c: 262:  }
+[e :UE 624 ]
 }

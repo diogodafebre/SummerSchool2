@@ -99,7 +99,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "72 ./xf/xf.h
 [; ;./xf/xf.h: 72: void XF_decrementAndQueueTimers();
 [v _XF_decrementAndQueueTimers `(v ~T0 @X0 0 e? ]
-[v F6497 `(v ~T0 @X0 0 tf ]
+[v F6498 `(v ~T0 @X0 0 tf ]
 "14358 C:/Users/diogo/.mchp_packs/Microchip/PIC18F-J_DFP/1.6.157/xc8\pic\include\proc\pic18f97j60.h
 [; ;C:/Users/diogo/.mchp_packs/Microchip/PIC18F-J_DFP/1.6.157/xc8\pic\include\proc\pic18f97j60.h: 14358:     struct {
 [s S531 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -1328,7 +1328,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _XF_init ..  ]
 "77
 [; ;main.c: 77:     TMR0_SetInterruptHandler(XF_decrementAndQueueTimers);
-[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6497 ]
+[e ( _TMR0_SetInterruptHandler (1 -> &U _XF_decrementAndQueueTimers `*F6498 ]
 "85
 [; ;main.c: 85:     (INTCONbits.GIE = 1);
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
