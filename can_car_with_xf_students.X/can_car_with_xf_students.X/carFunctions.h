@@ -43,22 +43,31 @@ typedef enum
     E_TEMPOMAT_OFF,
     E_ACCELERATION_ON,
     E_ACCELERATION_OFF,
-    E_HIGH_BRAKE_RELASED
+    E_HIGH_BRAKE_RELASED,
+    E_GEAR_PARK,
+    E_GEAR_DRIVE,
+    E_GEAR_REVERSE,
+    E_GEAR_NEUTRAL
             
 }Event_id;
 
 
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include "xf/xf.h"
+
+
+bool gearSelect_Proceess(Event* ev);
 bool lightControl_Process(struct Event_* ev);
 bool motorControl_Process(Event* ev);
 
 void updateCarState(void);
-
+void gearSelect(uint8_t gearEngaged);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
-void motorControl(uint8_t percent);
+void motorControl(uint8_t percent,uint8_t starter);
+
+void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
 #endif	/* XC_CARFUNCTIONS_H */
 

@@ -10751,7 +10751,7 @@ void LCD_2x16_WriteMsg(unsigned char * msg, uint8_t line);
 # 34 "./carFunctions.h"
 typedef enum
 {
-     E_NULL=0,
+    E_NULL=0,
     E_INIT,
     E_CONTACT_OFF,
     E_CONTACT_ON,
@@ -10761,7 +10761,11 @@ typedef enum
     E_TEMPOMAT_OFF,
     E_ACCELERATION_ON,
     E_ACCELERATION_OFF,
-    E_HIGH_BRAKE_RELASED
+    E_HIGH_BRAKE_RELASED,
+    E_GEAR_PARK,
+    E_GEAR_DRIVE,
+    E_GEAR_REVERSE,
+    E_GEAR_NEUTRAL
 
 }Event_id;
 
@@ -10851,17 +10855,22 @@ void XF_decrementAndQueueTimers();
 uint8_t XF_post(processEventT processEvent, uint8_t id, uint16_t delay);
 
 void XF_executeOnce();
-# 52 "./carFunctions.h" 2
+# 56 "./carFunctions.h" 2
 
+
+
+_Bool gearSelect_Proceess(Event* ev);
 _Bool lightControl_Process(struct Event_* ev);
 _Bool motorControl_Process(Event* ev);
 
 void updateCarState(void);
-
+void gearSelect(uint8_t gearEngaged);
 void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
-void motorControl(uint8_t percent);
+void motorControl(uint8_t percent,uint8_t starter);
+
+void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 # 48 "main.c" 2
 
 

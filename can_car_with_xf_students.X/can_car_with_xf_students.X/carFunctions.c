@@ -20,134 +20,43 @@
  #define MIN(a,b) (((a)<(b))?(a):(b))
  #define MAX(a,b) (((a)>(b))?(a):(b))
  
- 
- void motorControl(uint8_t percent){
-     static uint8_t lastPercent=0; 
+ void gearSelect(uint8_t gearEngaged){
+     typedef enum
+     {
+         PARK,
+         NEUTRAL,
+         DRIVE,
+         REVERSE,     
+        
+     }GearState;
+     static uint8_t lastGear = 0;
      CAN_TX_MSGOBJ txMsg={0};
      uint8_t txdata[8];
-         if(lastPercent!= percent) { 
-             lastPercent = percent;
- 
-             txMsg.bF.id.ID = ID_PWR_MOTOR;
+     
+     if(lastGear!= gearEngaged) { 
+             lastGear = gearEngaged;
+             txMsg.bF.id.ID = ID_GEAR_LVL;
              txMsg.bF.ctrl.DLC = CAN_DLC_1;
-             txdata[0] = percent;
-         CanSend(&txMsg,txdata); 
+             txdata[0] = gearEngaged;
+             CanSend(&txMsg,txdata); 
      } 
  }
  
- bool motorControl_Process(Event* ev){
-     
-     typedef enum
-     {
-         INIT,
-         OFF,
-         CRUISE,
-         BRAKE,
-         STANDBY,
-         ACCELERATION,
-         DECELERATION
-     }MotorState;
-     static MotorState state = INIT;
-     static MotorState oldState = INIT;
-     
-     
+ void motorControl(uint8_t percent,uint8_t starter){
+     static uint8_t lastPercent = 0; 
+     static uint8_t lastStarter = 0; 
+     CAN_TX_MSGOBJ txMsg={0};
+     uint8_t txdata[8];
+         if((lastPercent != percent)||(lastStarter != starter)) { 
+             lastPercent = percent;
+             lastStarter = starter;
  
-     
-     
-     
-     
-     // Transition state machine
-     switch(state)   
-     {
-         case INIT:
-             if(ev->id == E_INIT){
-                 state = OFF;
-             }
-             break;
-         case OFF:
-             if(ev->id == E_CONTACT_ON)
-             {
-                 state = STANDBY;
- 
-             }
-             break;
- 
-         case STANDBY:
-             if(ev->id == E_CONTACT_OFF)
-             {
-                 state = OFF;
-             }else if(ev->id == E_ACCELERATION_ON)
-             {
-                 state = ACCELERATION;
-             }
-         case ACCELERATION:
-             
-             
-             break;
-         case DECELERATION:
-             
-             break;
-             
-         case CRUISE:
-             if(ev->id == E_CONTACT_OFF)
-             {
-                 state = OFF;
-             }else if(ev->id == E_ACCELERATION_OFF)
-             {
-                 state = STANDBY;
-             }
-             
-         default :
-             break;
-     }
-     
-     // Check state change
-     if(oldState == state)    
-    {
-        return 0;            // no change, no entry action
-    }
-    oldState = state; 
-    
-    // State machine actions
-    switch(state)            
-     {
-         case INIT:
-         break;
-         case OFF:
-             motorControl(0);
-             break;
-         case CRUISE:
- 
-             break;    
-         case STANDBY:
-            lightContol_FrontLight(50);
-            lightContol_BackLight(50);
-            break;
-         case BRAKE:
-                
-             break;
-         case ACCELERATION:
-             
-                 for (uint8_t i = 0; i < 100; i++){
-                     __delay_ms(100);
-                     motorControl(i);
-                 }
- 
-             break;
-         case DECELERATION:
-              
-                 for (uint8_t i = 0; i < 100; i++){
-                     __delay_ms(500);
-                     motorControl(i);
-                 }
-    
-             break;
- 
-         default:
-             break;
-     }    
-     return 0;
- 
+             txMsg.bF.id.ID = ID_PWR_MOTOR;
+             txMsg.bF.ctrl.DLC = CAN_DLC_2;
+             txdata[0] = percent;
+             txdata[1] = starter;
+         CanSend(&txMsg,txdata); 
+     } 
  }
  
  void lightContol_FrontLight(uint8_t light)
@@ -180,6 +89,123 @@
      } 
  }
  
+ bool motorControl_Process(Event* ev){
+     
+     typedef enum
+     {
+         INIT,
+         OFF,
+         STARTING,
+         CRUISE,
+         BRAKE,
+         STANDBY,
+         ACCELERATION,
+         DECELERATION
+     }MotorState;
+     static MotorState state = OFF;
+     static MotorState oldState = OFF;
+
+     
+     // Transition state machine
+     switch(state)   
+     {
+        
+         case OFF:
+             if(ev->id == E_CONTACT_ON)
+             {
+                 state = STARTING;
+ 
+             }
+             break;
+             
+         case STARTING:
+                 state = STANDBY;
+             break;
+ 
+         case STANDBY:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+             }else if(ev->id == E_ACCELERATION_ON)
+             {
+                 state = ACCELERATION;
+             }
+         case ACCELERATION:
+             if(ev->id == E_ACCELERATION_OFF)
+             {
+                 state = DECELERATION;
+             }else if(ev->id == E_HIGH_BRAKE)
+             {
+                 state = DECELERATION;
+             }
+             
+             break;
+         case DECELERATION:
+             if (carState.speed == 0){
+                 state = STANDBY;
+             }else if ((carState.speed > 0) & (ev->id !=E_HIGH_BRAKE)){
+                 state = CRUISE;
+             }
+             
+             break;
+             
+         case CRUISE:
+             if(ev->id == E_CONTACT_OFF)
+             {
+                 state = OFF;
+             }else if(ev->id == E_ACCELERATION_OFF)
+             {
+                 state = STANDBY;
+             }
+             
+         default :
+             break;
+     }
+     
+     // Check state change
+     if(oldState == state)    
+    {
+        return 0;            // no change, no entry action
+    }
+    oldState = state; 
+    
+    // State machine actions
+    switch(state)            
+     {
+         
+         case OFF:
+             motorControl(0,0);
+             break;
+         case STARTING:
+             motorControl(10,1);
+             break;
+         case CRUISE:
+             
+             break;    
+         case STANDBY:
+             
+            break;
+         case BRAKE:
+             
+             break;
+
+         case ACCELERATION:
+             
+            
+             
+             break;
+         case DECELERATION:
+              
+            
+             break;
+             
+         default:
+             break;
+     }    
+     return 0;
+ 
+ }
+ 
  bool lightControl_Process(Event* ev)
  {
      typedef enum
@@ -188,8 +214,7 @@
          OFF,
          CRUISE,
          BRAKE,     
-         
-                 
+                   
      }LightState;
      static LightState state = INIT;
      static LightState oldState = INIT;
@@ -281,6 +306,7 @@
                  {
                      XF_post(lightControl_Process, E_CONTACT_ON, 0);
                      XF_post(motorControl_Process, E_CONTACT_ON, 0);
+                     
                  }
                  break; 
  
@@ -300,10 +326,14 @@
                 
              // Accélération
              case ID_ACCEL_PEDAL:
+                 carState.accelPedal = rxdata[0];
                  if (rxdata[0] > 6) 
                  {
                      XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                 }else
+                 }else if (rxdata[0] < 6) 
+                 {
+                     XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
+                 }
                  break; 
  
              default:
