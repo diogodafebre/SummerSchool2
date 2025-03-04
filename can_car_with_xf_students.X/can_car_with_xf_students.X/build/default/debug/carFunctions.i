@@ -10919,6 +10919,7 @@ void lightContol_FrontLight(uint8_t light);
 void lightContol_BackLight(uint8_t light);
 
 void motorControl(uint8_t percent,uint8_t starter);
+void handleAcceleration(void);
 
 void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 # 15 "carFunctions.c" 2
@@ -10931,28 +10932,6 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
 
 
-
- void gearSelect(uint8_t gearEngaged){
-     typedef enum
-     {
-         PARK,
-         NEUTRAL,
-         DRIVE,
-         REVERSE,
-
-     }GearState;
-     static uint8_t lastGear = 0;
-     CAN_TX_MSGOBJ txMsg={0};
-     uint8_t txdata[8];
-
-     if(lastGear!= gearEngaged) {
-             lastGear = gearEngaged;
-             txMsg.bF.id.ID = (0x12);
-             txMsg.bF.ctrl.DLC = CAN_DLC_1;
-             txdata[0] = gearEngaged;
-             CanSend(&txMsg,txdata);
-     }
- }
 
  void motorControl(uint8_t percent,uint8_t starter){
      static uint8_t lastPercent = 0;
@@ -10970,7 +10949,6 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
          CanSend(&txMsg,txdata);
      }
  }
-
  void lightContol_FrontLight(uint8_t light)
  {
 
@@ -11000,19 +10978,12 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
          CanSend(&txMsg,txdata);
      }
  }
-
  _Bool motorControl_Process(Event* ev){
 
      typedef enum
      {
-         INIT,
          OFF,
-         STARTING,
-         CRUISE,
-         BRAKE,
-         STANDBY,
-         ACCELERATION,
-         DECELERATION
+         CRUISE
      }MotorState;
      static MotorState state = OFF;
      static MotorState oldState = OFF;
@@ -11025,49 +10996,17 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
          case OFF:
              if(ev->id == E_CONTACT_ON)
              {
-                 state = STARTING;
-
-             }
-             break;
-
-         case STARTING:
-                 state = STANDBY;
-             break;
-
-         case STANDBY:
-             if(ev->id == E_CONTACT_OFF)
-             {
-                 state = OFF;
-             }else if(ev->id == E_ACCELERATION_ON)
-             {
-                 state = ACCELERATION;
-             }
-         case ACCELERATION:
-             if(ev->id == E_ACCELERATION_OFF)
-             {
-                 state = DECELERATION;
-             }else if(ev->id == E_HIGH_BRAKE)
-             {
-                 state = DECELERATION;
-             }
-
-             break;
-         case DECELERATION:
-             if (carState.speed == 0){
-                 state = STANDBY;
-             }else if ((carState.speed > 0) & (ev->id !=E_HIGH_BRAKE)){
                  state = CRUISE;
-             }
 
+             }
              break;
+
+
 
          case CRUISE:
              if(ev->id == E_CONTACT_OFF)
              {
                  state = OFF;
-             }else if(ev->id == E_ACCELERATION_OFF)
-             {
-                 state = STANDBY;
              }
 
          default :
@@ -11077,10 +11016,17 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
      if(oldState == state)
     {
+         if (ev->id == E_ACCELERATION_ON){
+             if(carState.rpm <8000){
+                motorControl((((10)>(carState.accelPedal-3))?(10):(carState.accelPedal-3)),0);
+             }
+         }
         return 0;
     }
-    oldState = state;
 
+
+
+    if (oldState!= state){
 
     switch(state)
      {
@@ -11088,36 +11034,19 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
          case OFF:
              motorControl(0,0);
              break;
-         case STARTING:
-             motorControl(10,1);
-             break;
          case CRUISE:
-
-             break;
-         case STANDBY:
-
-            break;
-         case BRAKE:
-
-             break;
-
-         case ACCELERATION:
-
-
-
-             break;
-         case DECELERATION:
-
-
+             motorControl(10,1);
              break;
 
          default:
              break;
      }
+    }
+
+     oldState = state;
      return 0;
 
  }
-
  _Bool lightControl_Process(Event* ev)
  {
      typedef enum
@@ -11194,7 +11123,6 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
      }
      return 0;
  }
-
  void updateCarState(void)
  {
 
@@ -11238,16 +11166,8 @@ void audioGest(uint8_t wheelsDrive,uint8_t motorAudio);
 
 
              case (0x14<<4):
-                 carState.accelPedal = rxdata[0];
-                 if (rxdata[0] > 6)
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
-                 }else if (rxdata[0] < 6)
-                 {
-                     XF_post(motorControl_Process, E_ACCELERATION_OFF, 0);
-                 }
-                 break;
-
+                 carState.accelPedal = rxdata[0] ;
+                 XF_post(motorControl_Process, E_ACCELERATION_ON, 0);
              default:
 
                  break;

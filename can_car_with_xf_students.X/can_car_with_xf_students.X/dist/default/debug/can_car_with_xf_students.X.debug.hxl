@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o
+ C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o
  -Odist/default/debug\can_car_with_xf_students.X.debug.hex
  -logfile=dist/default/debug\can_car_with_xf_students.X.debug.hxl
  -addressing=1
@@ -9,21 +9,21 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
-  8h - B5h		(C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
-  FF8Ch - FFFEh		(C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
-  10000h - 14B23h		(C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
-  1FFF8h - 1FFFDh		(C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
+  0h - 3h		(C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
+  8h - B5h		(C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
+  FF8Ch - FFFEh		(C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
+  10000h - 14A17h		(C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
+  1FFF8h - 1FFFDh		(C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
  Unused ranges:
   4h - 7h
   B6h - FF8Bh
   FFFFh - FFFFh
-  14B24h - 1FFF7h
+  14A18h - 1FFF7h
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\diogo\AppData\Local\Temp\xcAs24js.\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\diogo\AppData\Local\Temp\xcAs2m2o.\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -1233,24 +1233,7 @@
 000149E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000149F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00014A00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A70 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A80 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014A90 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AA0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AB0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014AF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014B00 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014B10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00014B20 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
+00014A10 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 0001FFF0 | -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1 -- --
 00020000 | --
