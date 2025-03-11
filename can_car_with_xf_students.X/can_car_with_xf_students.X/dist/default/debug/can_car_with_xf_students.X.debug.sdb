@@ -659,7 +659,7 @@ CAN_TX_FIFO_HALF_FULL_EVENT 2
 CAN_TX_FIFO_EMPTY_EVENT 4
 CAN_TX_FIFO_ATTEMPTS_EXHAUSTED_EVENT 16
 ]
-"39 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
+"33 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
 [e E5628 . `uc
 CAN_DLC_0 0
 CAN_DLC_1 1
@@ -678,18 +678,12 @@ CAN_DLC_32 13
 CAN_DLC_48 14
 CAN_DLC_64 15
 ]
-"105
-[e E6686 . `uc
-INIT 0
-OFF 1
-STARTING 2
-CRUISE 3
-BRAKE 4
-STANDBY 5
-ACCELERATION 6
-DECELERATION 7
+"75
+[e E6675 . `uc
+OFF 0
+CRUISE 1
 ]
-"114
+"84
 [e E6536 . `uc
 E_NULL 0
 E_INIT 1
@@ -707,8 +701,8 @@ E_GEAR_DRIVE 12
 E_GEAR_REVERSE 13
 E_GEAR_NEUTRAL 14
 ]
-"219
-[e E6700 . `uc
+"147
+[e E6683 . `uc
 INIT 0
 OFF 1
 CRUISE 2
@@ -838,17 +832,17 @@ BRAKE 3
 [v _DRV_CANFDSPI_BitTimeConfigureNominal40MHz DRV_CANFDSPI_BitTimeConfigureNominal40MHz `R(c  1 e 1 0 ]
 "3766
 [v _DRV_CANFDSPI_DlcToDataBytes DRV_CANFDSPI_DlcToDataBytes `R(ul  1 e 4 0 ]
-"45 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
+"23 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
 [v _motorControl motorControl `R(v  1 e 1 0 ]
-"62
+"39
 [v _lightContol_FrontLight lightContol_FrontLight `R(v  1 e 1 0 ]
-"77
+"54
 [v _lightContol_BackLight lightContol_BackLight `R(v  1 e 1 0 ]
-"92
+"68
 [v _motorControl_Process motorControl_Process `R(a  1 e 1 0 ]
-"209
+"137
 [v _lightControl_Process lightControl_Process `R(a  1 e 1 0 ]
-"286
+"213
 [v _updateCarState updateCarState `R(v  1 e 1 0 ]
 "43 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\lcd/lcd.c
 [v _LCD_2x16_WriteCmd LCD_2x16_WriteCmd `R(v  1 s 1 LCD_2x16_WriteCmd ]
@@ -1304,11 +1298,11 @@ BRAKE 3
 [v _maskObj maskObj `S691  1 a 6 6 ]
 "101
 } 12
-"286 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
+"213 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
 [v _updateCarState updateCarState `R(v  1 e 1 0 ]
 {
 [s S24 _CAN_MSGOBJ_ID 6 `ul 1 ID 4 0 `uc 1 SID11 1 4 `uc 1 unimplemented1 1 5 ]
-"289
+"216
 [s S720 _CAN_RX_MSGOBJ_CTRL 3 `uc 1 DLC 1 0 :4:0 
 `uc 1 IDE 1 0 :1:4 
 `uc 1 RTR 1 0 :1:5 
@@ -1318,9 +1312,9 @@ BRAKE 3
 [s S728 . 13 `S24 1 id 6 0 `S720 1 ctrl 3 6 `ul 1 timeStamp 4 9 ]
 [u S732 _CAN_RX_MSGOBJ 16 `S728 1 bF 13 0 `[4]ul 1 word 16 0 `[16]uc 1 byte 16 0 ]
 [v _rxObj rxObj `S732  1 a 16 0 ]
-"290
+"217
 [v _rxdata rxdata `[8]uc  1 a 8 16 ]
-"344
+"263
 } 24
 "274 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\xf/xf.c
 [v _XF_post XF_post `R(uc  1 e 1 0 ]
@@ -1618,33 +1612,33 @@ BRAKE 3
 [v _ev ev `S4943  1 a 6 0 ]
 "300
 } 6
-"209 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
+"137 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\carFunctions.c
 [v _lightControl_Process lightControl_Process `R(a  1 e 1 0 ]
 {
 [s S4943 Event_ 6 `uc 1 id 1 0 `*.38R(a 1 processEvent 3 1 `us 1 delay 2 4 ]
 [v _ev ev `*.39S4943  1 p 2 -2 ]
-"219
-[v lightControl_Process@state state `E6700  1 s 1 state ]
-"220
-[v lightControl_Process@oldState oldState `E6700  1 s 1 oldState ]
-"284
+"147
+[v lightControl_Process@state state `E6683  1 s 1 state ]
+"148
+[v lightControl_Process@oldState oldState `E6683  1 s 1 oldState ]
+"212
 } 0
-"92
+"68
 [v _motorControl_Process motorControl_Process `R(a  1 e 1 0 ]
 {
 [s S4943 Event_ 6 `uc 1 id 1 0 `*.38R(a 1 processEvent 3 1 `us 1 delay 2 4 ]
 [v _ev ev `*.39S4943  1 p 2 -2 ]
-"105
-[v motorControl_Process@state state `E6686  1 s 1 state ]
-"106
-[v motorControl_Process@oldState oldState `E6686  1 s 1 oldState ]
-"207
-} 0
-"45
+"75
+[v motorControl_Process@state state `E6675  1 s 1 state ]
+"76
+[v motorControl_Process@oldState oldState `E6675  1 s 1 oldState ]
+"136
+} 2
+"23
 [v _motorControl motorControl `R(v  1 e 1 0 ]
 {
 [s S24 _CAN_MSGOBJ_ID 6 `ul 1 ID 4 0 `uc 1 SID11 1 4 `uc 1 unimplemented1 1 5 ]
-"48
+"26
 [s S28 _CAN_TX_MSGOBJ_CTRL 6 `uc 1 DLC 1 0 :4:0 
 `uc 1 IDE 1 0 :1:4 
 `uc 1 RTR 1 0 :1:5 
@@ -1654,23 +1648,23 @@ BRAKE 3
 [s S36 . 16 `S24 1 id 6 0 `S28 1 ctrl 6 6 `ul 1 timeStamp 4 12 ]
 [u S40 _CAN_TX_MSGOBJ 16 `S36 1 bF 16 0 `[4]ul 1 word 16 0 `[16]uc 1 byte 16 0 ]
 [v _txMsg txMsg `S40  1 a 16 0 ]
-"49
+"27
 [v _txdata txdata `[8]uc  1 a 8 16 ]
-"45
+"23
 [v _percent percent `uc  1 p 1 -1 ]
 [v _starter starter `uc  1 p 1 -2 ]
-"46
+"24
 [v motorControl@lastPercent lastPercent `uc  1 s 1 lastPercent ]
-"47
+"25
 [v motorControl@lastStarter lastStarter `uc  1 s 1 lastStarter ]
-[v motorControl@F6669 F6669 `S40  1 s 16 F6669 ]
-"60
+[v motorControl@F6658 F6658 `S40  1 s 16 F6658 ]
+"38
 } 24
-"62
+"39
 [v _lightContol_FrontLight lightContol_FrontLight `R(v  1 e 1 0 ]
 {
 [s S24 _CAN_MSGOBJ_ID 6 `ul 1 ID 4 0 `uc 1 SID11 1 4 `uc 1 unimplemented1 1 5 ]
-"66
+"43
 [s S28 _CAN_TX_MSGOBJ_CTRL 6 `uc 1 DLC 1 0 :4:0 
 `uc 1 IDE 1 0 :1:4 
 `uc 1 RTR 1 0 :1:5 
@@ -1680,20 +1674,20 @@ BRAKE 3
 [s S36 . 16 `S24 1 id 6 0 `S28 1 ctrl 6 6 `ul 1 timeStamp 4 12 ]
 [u S40 _CAN_TX_MSGOBJ 16 `S36 1 bF 16 0 `[4]ul 1 word 16 0 `[16]uc 1 byte 16 0 ]
 [v _txMsg txMsg `S40  1 a 16 0 ]
-"67
+"44
 [v _txdata txdata `[8]uc  1 a 8 16 ]
-"62
+"39
 [v _light light `uc  1 p 1 -1 ]
-"65
+"42
 [v lightContol_FrontLight@lastLight lastLight `uc  1 s 1 lastLight ]
-[v lightContol_FrontLight@F6675 F6675 `S40  1 s 16 F6675 ]
-"76
+[v lightContol_FrontLight@F6664 F6664 `S40  1 s 16 F6664 ]
+"53
 } 24
-"77
+"54
 [v _lightContol_BackLight lightContol_BackLight `R(v  1 e 1 0 ]
 {
 [s S24 _CAN_MSGOBJ_ID 6 `ul 1 ID 4 0 `uc 1 SID11 1 4 `uc 1 unimplemented1 1 5 ]
-"80
+"57
 [s S28 _CAN_TX_MSGOBJ_CTRL 6 `uc 1 DLC 1 0 :4:0 
 `uc 1 IDE 1 0 :1:4 
 `uc 1 RTR 1 0 :1:5 
@@ -1703,14 +1697,14 @@ BRAKE 3
 [s S36 . 16 `S24 1 id 6 0 `S28 1 ctrl 6 6 `ul 1 timeStamp 4 12 ]
 [u S40 _CAN_TX_MSGOBJ 16 `S36 1 bF 16 0 `[4]ul 1 word 16 0 `[16]uc 1 byte 16 0 ]
 [v _txMsg txMsg `S40  1 a 16 0 ]
-"81
+"58
 [v _txdata txdata `[8]uc  1 a 8 16 ]
-"77
+"54
 [v _light light `uc  1 p 1 -1 ]
-"79
+"56
 [v lightContol_BackLight@lastLight lastLight `uc  1 s 1 lastLight ]
-[v lightContol_BackLight@F6681 F6681 `S40  1 s 16 F6681 ]
-"90
+[v lightContol_BackLight@F6670 F6670 `S40  1 s 16 F6670 ]
+"67
 } 24
 "217 C:\Users\diogo\Documents\HES_SS2\SummerSchool2\can_car_with_xf_students.X\can_car_with_xf_students.X\can/can.c
 [v _CanSend CanSend `R(c  1 e 1 0 ]
